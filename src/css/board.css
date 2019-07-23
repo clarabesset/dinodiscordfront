@@ -1,0 +1,25 @@
+.board {
+  display: grid;
+  grid-template-columns: 50px 50px 50px 50px 50px 50px 50px 50px 50px 50px;
+  grid-template-rows: 50px 50px 50px 50px 50px 50px 50px 50px 50px 50px;
+  justify-content: center;
+  border: 1px solid black;
+  width: 100%;
+}
+
+.playerInfoContainer {
+  width: 300px;
+  padding: 200px 60px;
+  font-size: 40px;
+}
+
+.smallGameContainer {
+  display: flex;
+  flex-direction: row;
+}
+
+.scoreContainer {
+  padding: 200px 60px;
+  width: 300px;
+  font-size: 40px;
+}

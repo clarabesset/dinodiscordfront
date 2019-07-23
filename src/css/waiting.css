@@ -1,0 +1,42 @@
+.waitingContainer {
+  background-color: white;
+  border: 5px solid black;
+  margin: 80px;
+  height: 600px;
+  text-align: center;
+}
+
+.titleWait {
+  font-size: 50px;
+  margin: 20px;
+  color: black;
+}
+
+.textWait {
+  font-size: 30px;
+  color: black;
+}
+
+.imagesWait {
+  display: flex;
+  flex-direction: row;
+  margin: 50px 150px;
+}
+
+.myDino {
+  background-image: url(../img/green_dino_short.gif);
+  margin: 50px 120px;
+  height: 200px;
+  width: 200px;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.gifWait {
+  background-image: url(../img/dinowait.gif);
+  margin: 50px 80px;
+  height: 300px;
+  width: 300px;
+  background-repeat: no-repeat;
+  background-size: contain;
+}

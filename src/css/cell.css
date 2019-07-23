@@ -1,0 +1,47 @@
+.cell {
+  background-color: black;
+  border: 1px solid grey;
+  box-sizing: border-box;
+  height: 50px;
+  width: 50px;
+}
+
+.meteorite {
+  background-image: url("../img/meteorite2.png");
+}
+
+.red {
+  background-color: rgb(201, 56, 71);
+}
+
+.yellow {
+  background-color: rgb(236, 171, 39);
+}
+
+.green {
+  background-color: rgb(126, 166, 63);
+}
+
+.blue {
+  background-color: rgb(60, 146, 191);
+}
+
+.player-red {
+  background-color: rgb(201, 56, 71);
+  background-image: url(../img/red_dino_small.gif);
+}
+
+.player-yellow {
+  background-color: rgb(236, 171, 39);
+  background-image: url(../img/yellow_dino_small.gif);
+}
+
+.player-green {
+  background-color: rgb(126, 166, 63);
+  background-image: url(../img/green_dino_small.gif);
+}
+
+.player-blue {
+  background-color: rgb(60, 146, 191);
+  background-image: url(../img/blue_dino_small.gif);
+}

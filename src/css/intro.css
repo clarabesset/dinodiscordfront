@@ -1,0 +1,117 @@
+.bigIntro {
+  display: flex;
+  flex-direction: column;
+  background-repeat: no-repeat;
+  background-image: url("../img/scarynight.jpg");
+  background-size: cover;
+  height: 900px;
+}
+
+.intro {
+  display: flex;
+  justify-items: center;
+  flex-direction: column;
+  font-family: "VT323", monospace;
+  color: white;
+  height: 600px;
+}
+
+.textIntro {
+  padding-top: 300px;
+  font-size: 40px;
+  margin: 0 auto;
+  justify-content: center;
+  align-content: center;
+}
+
+.bottomIntro {
+  height: 300px;
+  width: 100%;
+}
+
+#skipImage {
+  background-image: url("../img/skipImage.png");
+  background-repeat: no-repeat;
+  height: 120px;
+  width: 120px;
+  margin-right: 80px;
+  margin-left: 1200px;
+  margin-top: 23px;
+  padding-right: 160px;
+  justify-self: flex-start;
+  align-self: flex-start;
+  z-index: 1;
+  position: absolute;
+}
+
+#skipImage:hover {
+  background-image: url("../img/skipHover.png") !important;
+  background-repeat: no-repeat;
+}
+
+.animDino1 {
+  width: 80px;
+  height: 80px;
+  position: absolute;
+  margin-top: 565px;
+  animation-name: example;
+  animation-delay: 32s;
+  animation-duration: 15s;
+  animation-iteration-count: 1;
+  z-index: 2;
+  position: absolute;
+  left: -30%;
+}
+
+.animDino2 {
+  width: 80px;
+  height: 80px;
+  position: absolute;
+  margin-top: 565px;
+  animation-name: example;
+  animation-delay: 34s;
+  animation-duration: 14s;
+  animation-iteration-count: 1;
+  z-index: 2;
+  position: absolute;
+  left: -30%;
+}
+
+.animDino3 {
+  width: 80px;
+  height: 80px;
+  position: absolute;
+  margin-top: 565px;
+  animation-name: example;
+  animation-delay: 36s;
+  animation-duration: 13s;
+  animation-iteration-count: 1;
+  z-index: 2;
+  position: absolute;
+  left: -30%;
+}
+
+.animDino4 {
+  width: 80px;
+  height: 80px;
+  position: absolute;
+  margin-top: 565px;
+  animation-name: example;
+  animation-delay: 38s;
+  animation-duration: 12s;
+  animation-iteration-count: 1;
+  z-index: 2;
+  position: absolute;
+  left: -30%;
+}
+
+@keyframes example {
+  0% {
+    left: -20px;
+    top: 0px;
+  }
+  100% {
+    left: 1000px;
+    top: 0px;
+  }
+}
