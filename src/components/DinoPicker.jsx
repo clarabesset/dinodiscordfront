@@ -4,7 +4,6 @@ import green from "./../img/green_dino_short.gif";
 import yellow from "./../img/yellow_dino_short.gif";
 import red from "./../img/red_dino_short.gif";
 import Dino from "./OneDino";
-
 export default class DinoPicker extends Component {
   constructor(props) {
     super(props);
@@ -17,7 +16,6 @@ export default class DinoPicker extends Component {
       ]
     };
   }
-
   handleDinoPicking = pickedDino => {
     console.log(pickedDino);
     const remainingDinos = this.state.dinos.filter(d => d.color !== pickedDino);

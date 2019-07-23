@@ -3,7 +3,6 @@ import Cell from "./Cell";
 import DinoPicker from "./../components/DinoPicker";
 import KeyListener from "./../components/KeyListener";
 import Result from "../pages/Result";
-
 export default class Board extends Component {
   constructor(props) {
     super(props);
@@ -13,14 +12,33 @@ export default class Board extends Component {
       step: 1 // changer la vue pour les différentes étapes du jeu
     };
   }
+  componentDidUpdate() {
+    console.log("updated !!!", this.state.players);
+    if (this.state.players.length === 2 && this.state.step !== 2) {
+      return this.launchGame();
+    }
+  }
+
+  static getDerivedStateFromProps(newProps, state) {
+    console.log("@getdirevedstatefrompropsnewProps => ", newProps, state);
+    if (newProps.playersFromServer.length !== state.players) {
+      return {
+        players: newProps.playersFromServer
+      };
+    } else return null;
+  }
   componentDidMount() {
     this.generateGrid();
   }
-
   getRandomInt(min, max) {
     return Math.floor(Math.random(min) * Math.floor(max));
   }
-
+  launchGame() {
+    console.log("to the next step", this.state.players);
+    this.setPlayerPositionInGrid(this.state.players[0], 0);
+    this.setPlayerPositionInGrid(this.state.players[1], 99);
+    this.setState({ step: 2 });
+  }
   get2RandCellIndexes() {
     const indexes = []; // cases choisies au hasard
     do {
@@ -29,7 +47,6 @@ export default class Board extends Component {
     } while (indexes.length !== 2); // 2 : nombres de météorites que l'on veut dès le départ
     return indexes;
   }
-
   generateGrid() {
     const grid = [];
     const indexes = this.get2RandCellIndexes();
@@ -65,7 +82,6 @@ export default class Board extends Component {
     }
     this.setState({ currentGrid: grid });
   }
-
   setPlayerPositionInGrid(player, cellNumber) {
     const gridCopy = [...this.state.currentGrid];
     gridCopy[cellNumber].player = player;
@@ -73,29 +89,29 @@ export default class Board extends Component {
       currentGrid: gridCopy
     });
   }
-
   setPlayer = color => {
     // console.log('yata ! one player entre dans le game : )', color);
-    const copy = [...this.state.players];
-    if (copy.length < 2) {
-      copy.push({
-        color: color,
-        nb: copy.length + 1
-      });
-      this.setState({ players: copy }, () => {
-        if (this.state.players.length === 1) {
-          this.setPlayerPositionInGrid(this.state.players[0], 0);
-        }
-        if (this.state.players.length === 2) {
-          this.setPlayerPositionInGrid(this.state.players[1], 99);
-          this.setState({ step: 2 });
-        } // quand deux joueurs sont créés, lancer le jeu
-      });
-    }
+    this.props.socket.emit("player-join", color);
+    // const copy = [...this.state.players];
+    // if (copy.length < 2) {
+    //   copy.push({
+    //     color: color,
+    //     nb: copy.length + 1
+    //   });
+    // this.setState({ players: copy }, () => {
+    //   if (this.state.players.length === 1) {
+
+    //     console.log(this.props.socket);
+    // this.setPlayerPositionInGrid(this.state.players[0], 0);
+    // }
+    // if (this.state.players.length === 2) {
+    // this.setPlayerPositionInGrid(this.state.players[1], 99);
+    // this.setState({ step: 2 });
+    // } // quand deux joueurs sont créés, lancer le jeu
+    // });
+    // }
   };
-
   // if cell.player.playernumber == 1 || 2
-
   movePlayer = (direction, playerNumber) => {
     console.log("player " + playerNumber + " moved " + direction);
     const copiedGrid = [...this.state.currentGrid];
@@ -103,7 +119,6 @@ export default class Board extends Component {
       cell => cell.player && cell.player.nb === playerNumber
     )[0].nb;
     const takenCell = copiedGrid.filter(cell => cell.taken === true);
-
     const findNextCell = (currentCellNb, nextDirection) => {
       const moves = {
         up: -10,
@@ -147,7 +162,6 @@ export default class Board extends Component {
       // return this.state.currentGrid[nextIndex];
       return nextIndex;
     };
-
     const findPreviousCell = (currentCellNb, nextDirection) => {
       if (nextDirection === "up") {
         let previousCell = currentCellNb + 10;
@@ -168,16 +182,13 @@ export default class Board extends Component {
         return previousCell;
       }
       console.log("currentCellNb ???", currentCellNb);
-
       // return this.state.currentGrid[nextIndex];
     };
-
     const nextCell = findNextCell(currentCell, direction);
     const previousCell = findPreviousCell(currentCell, direction);
     console.log("previous cell", previousCell);
     // console.log("currentCell ?" , currentCell)
     // if (!currentCell) return
-
     if (nextCell) {
       copiedGrid[currentCell].player = null;
       copiedGrid[currentCell].taken = false;
@@ -186,65 +197,60 @@ export default class Board extends Component {
       copiedGrid[nextCell].taken = true;
       copiedGrid[nextCell].color = this.state.players[0].color;
       this.setState({ currentGrid: copiedGrid }, () => {
+        console.log(this.props.socket); // use socket to broadcast player's move
+        // this.props.socket.emit("player-move", {})
+        // socket.emit('news', { hello: 'world' });
       });
     }
-
     // copiedGrid[currentCell.nb].player = null;
     // copiedGrid[nextCell.nb].player = this.state.players[playerNumber] ;
-
     // this.setState({currentGrid: copiedGrid}, () => {
-    // 	console.log(this.state.currentGrid)
+    //  console.log(this.state.currentGrid)
     // })
-
     // this.setState({})
     return;
     // if (direction === 'down') {
-
     // r.player
-
-    // 	const nextPosition = copiedGrid.filter(
-    // 	(cell) =>
-    // 	  cell.x === playerPosition.x && cell.y === playerPosition.y+1
+    //  const nextPosition = copiedGrid.filter(
+    //  (cell) =>
+    //    cell.x === playerPosition.x && cell.y === playerPosition.y+1
     // )[0];
     // console.log(nextPosition);
     // console.log(this.state.currentGrid[nextPosition])
     // nextPosition.taken = true;
     // nextPosition.color = playerPosition.player.color;
     // this.setState({currentGrid[]})
-
     // }
     // if (direction === 'right') {
-    // 	const nextPosition = copiedGrid.filter(
-    // 		(cell) =>
-    // 		  cell.x === playerPosition.x+1 && cell.y === playerPosition.y
-    // 	)[0];
-    // 	console.log(nextPosition);
+    //  const nextPosition = copiedGrid.filter(
+    //      (cell) =>
+    //        cell.x === playerPosition.x+1 && cell.y === playerPosition.y
+    //  )[0];
+    //  console.log(nextPosition);
     // }
     // if (direction === 'left') {
-    // 	const nextPosition = copiedGrid.filter(
-    // 		(cell) =>
-    // 		  cell.x === playerPosition.x-1 && cell.y === playerPosition.y+1
-    // 	)[0];
-    // 	console.log(nextPosition);
+    //  const nextPosition = copiedGrid.filter(
+    //      (cell) =>
+    //        cell.x === playerPosition.x-1 && cell.y === playerPosition.y+1
+    //  )[0];
+    //  console.log(nextPosition);
     // }
     // if (direction === 'up') {
-    // 	const nextPosition = copiedGrid.filter(
-    // 		(cell) =>
-    // 		  cell.x === playerPosition.x && cell.y === playerPosition.y-1
-    // 	)[0];
-    // 	console.log(nextPosition);
+    //  const nextPosition = copiedGrid.filter(
+    //      (cell) =>
+    //        cell.x === playerPosition.x && cell.y === playerPosition.y-1
+    //  )[0];
+    //  console.log(nextPosition);
     // }
     /*         handleChange: function (e) {
-			item = this.state.items[1];
-			item.name = 'newName';
-			items[1] = item;
-		 
-			this.setState({items: items});
-		 } */
+            item = this.state.items[1];
+            item.name = 'newName';
+            items[1] = item;
+         
+            this.setState({items: items});
+         } */
   };
-
   countPoints = () => {};
-
   render() {
     console.log("heeeergeyguya");
     return (
