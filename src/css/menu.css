@@ -41,7 +41,9 @@
 
 .menu-item-container {
   height: 88vh;
-  background-color: green;
+  background-image: url(../img/dayback.png);
+  background-repeat: no-repeat;
+  background-size: cover;
   display: flex;
   align-items: center;
   justify-content: center;
