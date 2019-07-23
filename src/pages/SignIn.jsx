@@ -65,8 +65,8 @@ export default class SignIn extends Component {
                   <button className="btnSign">SignIn</button>
                 </div>
                 <div className="linkBoxUp">
-                  <a className="linkSign" href="/signin">
-                    Sign In
+                  <a className="linkSign" href="/signup">
+                    Sign Up
                   </a>
                 </div>
                 >

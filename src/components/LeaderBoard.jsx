@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import DinoRed from "./../img/red_dino_short.gif";
 import axios from "axios";
+var count = 0;
 export default class LeaderBoard extends Component {
   state = {
     users: []
@@ -8,7 +9,10 @@ export default class LeaderBoard extends Component {
   componentDidMount() {
     axios.get("http://localhost:3001/api/User").then(res => {
       console.log(res);
-      this.setState({ users: res.data });
+      const sorted = res.data.sort((a, b) => {
+        return parseFloat(b.score) - parseFloat(a.score);
+      });
+      this.setState({ users: sorted });
     });
   }
   render() {
@@ -28,7 +32,7 @@ export default class LeaderBoard extends Component {
           <tbody>
             {this.state.users.map(users => (
               <tr>
-                <td>1</td>
+                <td>{(count = count + 1)}</td>
                 <td>{users.username} </td>
                 <td>{users.score}</td>
               </tr>
