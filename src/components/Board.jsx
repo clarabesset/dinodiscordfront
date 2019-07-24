@@ -2,7 +2,9 @@ import React, { Component } from "react";
 import Cell from "./Cell";
 import DinoPicker from "./../components/DinoPicker";
 import KeyListener from "./../components/KeyListener";
+import InfoPlayer from "./../components/InfoPlayer";
 import Result from "../pages/Result";
+
 export default class Board extends Component {
   constructor(props) {
     super(props);
@@ -198,14 +200,16 @@ export default class Board extends Component {
         {this.state.step === 1 && <DinoPicker setPlayer={this.setPlayer} />}
         {this.state.step === 2 && (
           <div className="smallGameContainer">
-            <div className="playerInfoContainer">*here user info*</div>
+           {/*  <div className="playerInfoContainer">*here user info*</div> */}
+           <InfoPlayer/>
             <div className="board">
               {this.state.currentGrid.length &&
                 this.state.currentGrid.map((cell, i) => {
                   return <Cell player={cell.player} key={i} cell={cell} />;
                 })}
             </div>
-            <div className="scoreContainer">*here your score*</div>
+           {/*  <div className="scoreContainer">*here your score*</div> */}
+           <InfoPlayer/>
           </div>
         )}
         {this.state.step === 3 && <Result />}
