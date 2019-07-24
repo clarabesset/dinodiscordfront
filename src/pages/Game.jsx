@@ -6,7 +6,8 @@ export default class Game extends Component {
   state = {
     socketResponse: null,
     socket: null,
-    playersFromServer: []
+    playersFromServer: [],
+    currentGrid: null
   };
   componentDidMount() {
     console.log("here");
@@ -17,9 +18,15 @@ export default class Game extends Component {
           console.log("players from server ?", players);
           this.setState({ playersFromServer: players });
         });
-        this.state.socket.on("message", data => {
-          console.log("ici", data);
+
+        this.state.socket.on("set-grid-model", gridModel => {
+          console.log("ici", gridModel);
+          this.setState({currentGrid: gridModel})
         });
+
+        // this.state.socket.on("message", data => {
+        //   console.log("ici", data);
+        // });
       }
     );
 
@@ -32,6 +39,7 @@ export default class Game extends Component {
         <div class="titleGame">Dino Discord</div>
         <div class="boardContainer">
           <Board
+            currentGrid={this.state.currentGrid}
             playersFromServer={this.state.playersFromServer}
             socket={this.state.socket}
           />
