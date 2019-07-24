@@ -1,16 +1,45 @@
 import React, { Component } from "react";
 import NavMain from "../components/NavMain";
 import Footer from "../components/Footer";
+import axios from "axios";
 
 export default class Profile extends Component {
+  state = {
+    username: "",
+    email: ""
+  }
+  componentDidMount() {
+
+    axios.get(`http://localhost:3001/api/User/${this.props.match.params.id}`).then(res => {
+      console.log(res.data)
+      this.setState({ username: res.data.username, email: res.data.email })
+    }).catch(dbErr => console.log(dbErr.response))
+
+  }
+
+  handleChange = (e) => {
+    const { name, value } = e.target;
+    this.setState({ [name]: value });
+    console.log(this.state)
+  }
+
+  handleSubmit = (e) => {
+    e.preventDefault()
+    axios.patch(`http://localhost:3001/api/User/${this.props.match.params.id}`, this.state)
+      .then(res => {
+        console.log(res, "update")
+      }).catch(dbErr => console.log(dbErr.response))
+  }
+
   render() {
+    console.log(this.props.match.params)
     return (
       <div>
         <NavMain />
         <div className="profileContainer">
           <h1 className="profileTitle">My Profile</h1>
           <div className="smallerProfile">
-            <form action="POST">
+            <form onClick={(e) => this.handleSubmit(e)} onChange={(e) => this.handleChange(e)}>
               <div className="formProfContainer">
                 <h2 className="editProfile">Want to make some changes? </h2>
                 <div className="boxSignProfile">
@@ -21,7 +50,7 @@ export default class Profile extends Component {
                     id="username"
                     name="username"
                     type="username"
-                    placeholder="username"
+                    value={this.state.username}
                     className="username"
                   />
                 </div>
@@ -33,7 +62,7 @@ export default class Profile extends Component {
                     id="email"
                     name="email"
                     type="email"
-                    placeholder="email@email.com"
+                    value={this.state.email}
                     className="email"
                   />
                 </div>
@@ -59,12 +88,12 @@ export default class Profile extends Component {
             <div className="dinoCool" />
             <div className="scoreBox">
               <h2 className="editProfile">Score</h2>
-              <p>You currently have a score of *score*</p>
+              <p>You currently have a score of {this.state.score}</p>
             </div>
           </div>
         </div>
         <Footer />
-      </div>
+      </div >
     );
   }
 }

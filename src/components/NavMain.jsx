@@ -5,7 +5,7 @@ import { AuthConsumer } from "./../auth/Guard";
 function NavMain() {
   return (
     <AuthConsumer>
-      {({ loginStatus, signout }) => {
+      {({ loginStatus, signout, user }) => {
         console.log("waazzaaaa", loginStatus);
         return (
           <>
@@ -17,7 +17,7 @@ function NavMain() {
                   </NavLink>
                 </div>
                 <div className="navMain-choices">
-                  <NavLink to="/profile" className="nav-item">
+                  <NavLink to={`/profile/${user._id}`} className="nav-item">
                     profile
                   </NavLink>
                   <NavLink
