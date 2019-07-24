@@ -1,9 +1,9 @@
 .waitingContainer {
-  background-color: white;
   border: 5px solid black;
-  margin: 80px;
+  margin: 0 100px;
   height: 600px;
   text-align: center;
+  background-color: white;
 }
 
 .titleWait {

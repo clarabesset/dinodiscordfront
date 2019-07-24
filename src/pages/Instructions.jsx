@@ -1,10 +1,13 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import NavMain from "../components/NavMain";
+import Footer from "../components/Footer";
 
 export default class Instructions extends Component {
   render() {
     return (
       <div className="bigInstructions">
+        <NavMain />
         <div className="title">
           <h1>Instructions</h1>
         </div>
@@ -33,6 +36,7 @@ export default class Instructions extends Component {
             </Link>
           </div>
         </div>
+        <Footer />
       </div>
     );
   }
