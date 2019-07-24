@@ -96,13 +96,13 @@ export default class Profile extends Component {
                     <a className="btnSign" href="/">
                       Delete
                   </a>
-                  </div>
-                </div>
-              </div>
-            </form>
-            <div className="dinoCool" />
-            <div className="scoreBox">
-              <h2 className="editProfile">Score</h2>
+                          </div>
+                        </div>
+                      </div>
+                    </form>
+                      <div className="dinoCool" />
+                      <div className="scoreBox">
+                        <h2 className="editProfile">Score</h2>
               <p>You currently have a score of {this.state.score}</p>
             </div>
           </div>
