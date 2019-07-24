@@ -41,7 +41,27 @@
   display: flex;
   font-family: "VT323", monospace;
   color: white;
-  margin-left: 10px;
+  margin-left: 5px;
+}
+
+.footer-name:hover {
+  color: #50b372;
+}
+
+.footer-coma {
+  display: flex;
+  font-family: "VT323", monospace;
+  color: white;
+}
+
+.footer-title a {
+  text-decoration: none;
+  color: white;
+}
+
+.footer-title a:active {
+  text-decoration: none;
+  color: white;
 }
 
 .menu-item-container {
