@@ -6,12 +6,13 @@ import axios from "axios";
 export default class Profile extends Component {
   state = {
     username: "",
-    email: ""
+    email: "",
+    score: null
   }
   componentDidMount() {
     axios.get(`http://localhost:3001/api/User/${this.props.match.params.id}`).then(res => {
       console.log(res.data)
-      this.setState({ username: res.data.username, email: res.data.email })
+      this.setState({ username: res.data.username, email: res.data.email, score: res.data.score })
     }).catch(dbErr => console.log(dbErr.response))
 
 

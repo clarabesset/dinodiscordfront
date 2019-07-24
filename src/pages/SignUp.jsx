@@ -16,7 +16,6 @@ export default class SignUp extends Component {
     axios
       .post(`${process.env.REACT_APP_BACKEND_URL}/signup`, this.state)
       .then(dbRes => {
-        console.log();
         this.props.history.push("/menu");
         console.log(dbRes);
       })
