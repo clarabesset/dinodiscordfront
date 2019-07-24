@@ -21,6 +21,10 @@ body {
   overflow: hidden;
 }
 
+input:focus::-webkit-input-placeholder {
+  color: transparent;
+}
+
 .board {
   display: grid;
   grid-template-columns: 50px 50px 50px 50px 50px 50px 50px 50px 50px 50px;

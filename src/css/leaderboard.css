@@ -1,82 +1,91 @@
+.leaderContainer {
+  background-image: url("../img/dayback.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
+}
+
 .leaderboard {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	margin: 0 auto;
-	width: 60%;
-	height: 85vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0 auto;
+  width: 50%;
+  height: 60%;
+  margin-bottom: 130px;
+  margin-top: 80px;
 }
 
 .leaderboard h1 {
-	font-size: 80px;
-	color: white;
-	text-align: center;
+  font-size: 80px;
+  color: white;
+  text-align: center;
+  margin: 40px;
 }
 
 .leaderboard img {
-    width: 50%;
+  width: 50%;
 }
 
 .table {
-	text-align: center;
-	user-select: none;
-	color: white;
-	background-color: black;
-	border-collapse: collapse;
+  text-align: center;
+  user-select: none;
+  color: white;
+  background-color: black;
+  border-collapse: collapse;
 }
 
 thead {
-	padding: 0;
-	margin: 0;
+  padding: 0;
+  margin: 0;
 }
 
 tbody {
-    height: 10px;    
-    overflow-y: auto;
+  height: 10px;
+  overflow-y: auto;
 }
 
 table,
 th,
 td {
-	padding: 2%;
+  padding: 2%;
 }
 
 th {
-	font-size: 30px;
+  font-size: 30px;
 }
 
 td {
-	width: 30%;
-	font-size: 30px;
+  width: 30%;
+  font-size: 30px;
 }
 
 /*  ESSAI  */
 
- table tbody, table thead
-{
-    display: block;
+table tbody,
+table thead {
+  display: block;
 }
 
-table tbody 
-{
-   overflow: auto;
-   height: 300px;
+table tbody {
+  overflow: auto;
+  height: 300px;
 }
 
- th
-{
-    width: 300px;
+th {
+  width: 300px;
 }
 
-td
-{
-    width: 300px;
-} 
+td {
+  width: 300px;
+}
 
 /*  ESSAI  */
 
-tr:nth-child(even) {background-color: rgb(201,56,71);}
+tr:nth-child(even) {
+  background-color: rgb(201, 56, 71);
+}
 
 table.blueTable tr:nth-child(even) {
-	background: #d0e4f5;
+  background: #d0e4f5;
 }

@@ -1,13 +1,50 @@
-import React from 'react'
+import React from "react";
 
 function Footer() {
   return (
     <div>
-      <footer className='footer'>
-        <p className='footer-title'>Made with humour & passion by Camille, Clara, Grégoire & Octave - Enjoy your game ;)</p>
+      <footer className="footer">
+        <p className="footer-title">Made with humour & passion by</p>
+        <a
+          className="footer-title footer-name"
+          href="https://www.linkedin.com/in/camille-charpentier/"
+          target="_blank"
+        >
+          Camille
+        </a>
+        <p className="footer-coma">,</p>
+        <br />
+        <a
+          className="footer-title footer-name"
+          href="https://www.linkedin.com/in/clarabesset/"
+          target="_blank"
+        >
+          Clara
+        </a>
+        <p className="footer-coma">, </p>
+        <br />
+        <a
+          className="footer-title footer-name"
+          href="https://www.linkedin.com/in/gr%C3%A9goire-lescuyer-806a9016b/"
+          target="_blank"
+        >
+          Grégoire
+        </a>
+        <br />
+        <p className="footer-title">&</p>
+        <br />
+        <a
+          className="footer-title footer-name"
+          href="https://www.linkedin.com/in/octavestoufflet/"
+          target="_blank"
+        >
+          Octave
+        </a>
+        <br />
+        <p className="footer-title">- Enjoy the game :)</p>
       </footer>
     </div>
-  )
+  );
 }
 
-export default Footer
+export default Footer;

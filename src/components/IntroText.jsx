@@ -4,7 +4,7 @@ import ReactTypingEffect from "react-typing-effect";
 const typingEffect = txt => {
   return (
     <div>
-      <ReactTypingEffect speed={100} text={txt} />
+      <ReactTypingEffect speed={75} text={txt} />
     </div>
   );
 };
