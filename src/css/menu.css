@@ -13,9 +13,10 @@
 
 .navMain-title {
   margin: 0;
-  color: aliceblue;
+  color: white;
   font-family: "VT323", monospace;
   font-size: 3rem;
+  margin-left: 10px;
 }
 
 .navMain-choices {
