@@ -6,7 +6,13 @@ export default class Waiting extends Component {
       <div class="waitingContainer">
         <div class="titleWait">Waiting for your opponent...</div>
         <div class="textWait">
-          <p>No worries, any second now, some dino will want to fight you</p>
+          {
+            !this.props.ready ?
+            <p>No worries, any second now, some dino will want to fight you</p>
+            :
+            <p>chono here ;)</p>
+          }
+          
         </div>
         <div className="imagesWait">
           <div className="myDino" />

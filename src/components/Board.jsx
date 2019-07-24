@@ -11,186 +11,85 @@ export default class Board extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			currentGrid: null,
+			currentGrid: [],
 			players: [],
+			ready: false,
 			step: 1 // changer la vue pour les différentes étapes du jeu
 		};
 	}
 	componentDidUpdate() {
 		console.log('updated !!!', this.state.players);
 		if (this.state.players.length === 1 && this.state.step !== 2) {
-			return this.setState({ step: 2 });
-		} else if (this.state.players.length === 2 && this.state.step !== 3) {
-			return this.launchGame();
+      this.setState({ ready: true, step: 2 });
+		}
+
+    if (this.state.players.length === 2 && this.state.step === 1 && !this.state.ready) {
+      this.setState({ ready: true, step: 2 }, () => {
+        this.props.socket.emit('generate-grid');
+      });
+    }
+    
+		if (this.state.currentGrid.length && this.state.step !== 3) {
+      console.log('here ... good to go :)');
+      this.setState({ step: 3 });
+			// return this.launchGame();
 		}
 	}
 
 	static getDerivedStateFromProps(newProps, state) {
 		console.log('@getdirevedstatefrompropsnewProps => ', newProps, state);
-		if (newProps.playersFromServer.length !== state.players) {
-			return {
-				players: newProps.playersFromServer
-			};
-		}
-		if (newProps.currentGrid !== null) {
-			return {
-				currentGrid: newProps.currentGrid
-			};
-		} else return null;
+		// if (newProps.playersFromServer.length !== state.players) {
+		return {
+			currentGrid: newProps.currentGrid.length ? newProps.currentGrid : state.currentGrid,
+			players: newProps.playersFromServer.length !== state.players.length ? newProps.playersFromServer : state.players,
+			ready: newProps.ready && newProps.ready === true ? true : false
+		};
+		// }
+		// if (newProps.currentGrid !== null) {
+		// 	return {
+		// 		currentGrid: newProps.currentGrid
+		// 	};
+		// } else return null;
 	}
 
-	componentDidMount() {
-		this.generateGrid();
-	}
-
-	getRandomInt(min, max) {
-		return Math.floor(Math.random(min) * Math.floor(max));
+	prepareGame() {
+		// this.setState({ step: 2 }, () => {
+			this.props.socket.emit('generate-grid');
+		// });
 	}
 
 	launchGame() {
 		console.log('to the next step', this.state.players);
-
-		this.props.socket.emit('generate-grid');
-		// this.setPlayerPositionInGrid(this.state.players[0], 0);
-		// this.setPlayerPositionInGrid(this.state.players[1], 99);
 		this.setState({ step: 3 });
 	}
-	get2RandCellIndexes() {
-		const indexes = []; // cases choisies au hasard
-		do {
-			const nb = this.getRandomInt(1, 98);
-			if (!indexes.includes(nb)) indexes.push(nb);
-		} while (indexes.length !== 2); // 2 : nombres de météorites que l'on veut dès le départ
-		return indexes;
-	}
-	generateGrid() {
-		const grid = [];
-		const indexes = this.get2RandCellIndexes();
-		var count = 0;
-		for (let i = 0; i <= 9; i++) {
-			for (let j = 0; j <= 9; j++) {
-				const pos = indexes.indexOf(count); // if not found => return -1
-				if (count === 0 || count === 99) {
-					// les cases où les joueurs doivent être placés
-					grid.push({
-						x: i,
-						y: j,
-						nb: count,
-						taken: true,
-						color: 'red',
-						player: this.state.players[count === 0 ? 0 : 99],
-						meteorite: false
-						/* player: null */
-					});
-				} else {
-					grid.push({
-						x: i,
-						y: j,
-						nb: count,
-						taken: pos !== -1 ? true : false,
-						color: null,
-						meteorite: pos !== -1 ? true : false,
-						player: null
-					});
-				}
-				count++; // gui@check ça suis pas sûr
-			}
-		}
-		this.setState({ currentGrid: grid });
-	}
-	setPlayerPositionInGrid(player, cellNumber) {
-		const gridCopy = [ ...this.state.currentGrid ];
-		gridCopy[cellNumber].player = player;
-		this.setState({
-			currentGrid: gridCopy
-		});
-	}
+
 	setPlayer = (color) => {
 		this.props.socket.emit('player-join', color);
 	};
 
-	movePlayer = (direction, playerNumber) => {
-		console.log('player ' + playerNumber + ' moved ' + direction);
-		const copiedGrid = [ ...this.state.currentGrid ];
-		const currentCell = copiedGrid.filter((cell) => cell.player && cell.player.nb === playerNumber)[0].nb;
-		const takenCell = copiedGrid.filter((cell) => cell.taken === true);
-		const findNextCell = (currentCellNb, nextDirection) => {
-			const moves = {
-				up: -10,
-				right: 1,
-				down: 10,
-				left: -1
-			};
-			if (true) {
-				for (let i = 0; i < takenCell.length; i++) {
-					if (nextDirection === 'up') {
-						if (currentCellNb - 10 < 0 || currentCellNb - 10 === takenCell[i].nb) return false;
-					} else if (nextDirection === 'down') {
-						if (currentCellNb + 10 > 99 || currentCellNb + 10 === takenCell[i].nb) return false;
-					} else if (nextDirection === 'left') {
-						const forbiden = [ 0, 10, 20, 30, 40, 50, 60, 70, 80, 90 ];
-						if (forbiden.includes(currentCellNb) || currentCellNb - 1 === takenCell[i].nb) return false;
-					} else if (nextDirection === 'right') {
-						const forbiden = [ 9, 19, 29, 39, 49, 59, 69, 79, 89, 99 ];
-						if (forbiden.includes(currentCellNb) || currentCellNb + 1 === takenCell[i].nb) return false;
-					}
-				}
-			}
-			const nextIndex = currentCellNb + moves[nextDirection];
-			console.log('CURRENT CELL', currentCellNb);
-			return nextIndex;
-		};
-		const findPreviousCell = (currentCellNb, nextDirection) => {
-			if (nextDirection === 'up') {
-				let previousCell = currentCellNb + 10;
-				console.log('previous cell ???', previousCell);
-				console.log(' currentCell ???', currentCell);
-				return previousCell;
-			} else if (nextDirection === 'down') {
-				let previousCell = currentCellNb - 10;
-				console.log('previous cell ???', previousCell);
-				return previousCell;
-			} else if (nextDirection === 'left') {
-				let previousCell = currentCellNb + 1;
-				console.log('previous cell ???', previousCell);
-				return previousCell;
-			} else if (nextDirection === 'right') {
-				let previousCell = currentCellNb - 1;
-				console.log('previous cell ???', previousCell);
-				return previousCell;
-			}
-			console.log('currentCellNb ???', currentCellNb);
-		};
-		const nextCell = findNextCell(currentCell, direction);
-		const previousCell = findPreviousCell(currentCell, direction);
-		console.log('previous cell', previousCell);
-
-		if (nextCell) {
-			copiedGrid[currentCell].player = null;
-			copiedGrid[currentCell].taken = false;
-			copiedGrid[currentCell].color = this.state.players[0].color;
-			copiedGrid[nextCell].player = this.state.players[playerNumber - 1];
-			copiedGrid[nextCell].taken = true;
-			copiedGrid[nextCell].color = this.state.players[0].color;
-			this.setState({ currentGrid: copiedGrid }, () => {
-				console.log(this.props.socket); // use socket to broadcast player's move
-				// this.props.socket.emit("player-move", {})
-				// socket.emit('news', { hello: 'world' });
-			});
-		}
-
-		return;
+	movePlayer = (direction, playerId) => {
+		console.log(direction, playerId);
 	};
 
 	countPoints = () => {};
 	render() {
 		return (
 			<React.Fragment>
-				{/* <PlayerInfos/> */}
-				{/*  <button onClick={this.handleMovements}>Up</button> */}
-				<KeyListener currentGrid={this.state.currentGrid} movePlayer={this.movePlayer} />
-				{this.state.step === 1 && <DinoPicker setPlayer={this.setPlayer} />}
-				{this.state.step === 2 && <Waiting />}
+				<AuthConsumer>
+					{({ user }) => {
+						return (
+							this.state.step === 3 && (
+								<KeyListener
+									user={user}
+									currentGrid={this.state.currentGrid}
+									movePlayer={this.movePlayer}
+								/>
+							)
+						);
+					}}
+				</AuthConsumer>
+				{this.state.step === 1 && <DinoPicker availableDinos={this.props.availableDinos} setPlayer={this.setPlayer} />}
+				{this.state.step === 2 && <Waiting ready={this.state.ready} />}
 				{this.state.step === 3 && (
 					<div className="smallGameContainer">
 						<AuthConsumer>
@@ -216,3 +115,93 @@ export default class Board extends Component {
 		);
 	}
 }
+
+// setPlayerPositionInGrid(player, cellNumber) {
+// 	const gridCopy = [ ...this.state.currentGrid ];
+// 	gridCopy[cellNumber].player = player;
+// 	this.setState({
+// 		currentGrid: gridCopy
+// 	});
+// }
+
+// launchGame() {
+//   console.log('to the next step', this.state.players);
+
+//   // this.props.socket.emit('generate-grid');
+//   // this.setPlayerPositionInGrid(this.state.players[0], 0);
+//   // this.setPlayerPositionInGrid(this.state.players[1], 99);
+//   this.setState({ step: 3 });
+// }
+
+// movePlayer = (direction, playerNumber) => {
+// 	console.log('player ' + playerNumber + ' moved ' + direction);
+// 	const copiedGrid = [ ...this.state.currentGrid ];
+// 	const currentCell = copiedGrid.filter((cell) => cell.player && cell.player.nb === playerNumber)[0].nb;
+// 	const takenCell = copiedGrid.filter((cell) => cell.taken === true);
+// 	const findNextCell = (currentCellNb, nextDirection) => {
+// 		const moves = {
+// 			up: -10,
+// 			right: 1,
+// 			down: 10,
+// 			left: -1
+// 		};
+// 		if (true) {
+// 			for (let i = 0; i < takenCell.length; i++) {
+// 				if (nextDirection === 'up') {
+// 					if (currentCellNb - 10 < 0 || currentCellNb - 10 === takenCell[i].nb) return false;
+// 				} else if (nextDirection === 'down') {
+// 					if (currentCellNb + 10 > 99 || currentCellNb + 10 === takenCell[i].nb) return false;
+// 				} else if (nextDirection === 'left') {
+// 					const forbiden = [ 0, 10, 20, 30, 40, 50, 60, 70, 80, 90 ];
+// 					if (forbiden.includes(currentCellNb) || currentCellNb - 1 === takenCell[i].nb) return false;
+// 				} else if (nextDirection === 'right') {
+// 					const forbiden = [ 9, 19, 29, 39, 49, 59, 69, 79, 89, 99 ];
+// 					if (forbiden.includes(currentCellNb) || currentCellNb + 1 === takenCell[i].nb) return false;
+// 				}
+// 			}
+// 		}
+// 		const nextIndex = currentCellNb + moves[nextDirection];
+// 		console.log('CURRENT CELL', currentCellNb);
+// 		return nextIndex;
+// 	};
+// 	const findPreviousCell = (currentCellNb, nextDirection) => {
+// 		if (nextDirection === 'up') {
+// 			let previousCell = currentCellNb + 10;
+// 			console.log('previous cell ???', previousCell);
+// 			console.log(' currentCell ???', currentCell);
+// 			return previousCell;
+// 		} else if (nextDirection === 'down') {
+// 			let previousCell = currentCellNb - 10;
+// 			console.log('previous cell ???', previousCell);
+// 			return previousCell;
+// 		} else if (nextDirection === 'left') {
+// 			let previousCell = currentCellNb + 1;
+// 			console.log('previous cell ???', previousCell);
+// 			return previousCell;
+// 		} else if (nextDirection === 'right') {
+// 			let previousCell = currentCellNb - 1;
+// 			console.log('previous cell ???', previousCell);
+// 			return previousCell;
+// 		}
+// 		console.log('currentCellNb ???', currentCellNb);
+// 	};
+// 	const nextCell = findNextCell(currentCell, direction);
+// 	const previousCell = findPreviousCell(currentCell, direction);
+// 	console.log('previous cell', previousCell);
+
+// 	if (nextCell) {
+// 		copiedGrid[currentCell].player = null;
+// 		copiedGrid[currentCell].taken = false;
+// 		copiedGrid[currentCell].color = this.state.players[0].color;
+// 		copiedGrid[nextCell].player = this.state.players[playerNumber - 1];
+// 		copiedGrid[nextCell].taken = true;
+// 		copiedGrid[nextCell].color = this.state.players[0].color;
+// 		this.setState({ currentGrid: copiedGrid }, () => {
+// 			console.log(this.props.socket); // use socket to broadcast player's move
+// 			// this.props.socket.emit("player-move", {})
+// 			// socket.emit('news', { hello: 'world' });
+// 		});
+// 	}
+
+// 	return;
+// };
