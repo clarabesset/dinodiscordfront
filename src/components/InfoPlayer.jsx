@@ -4,7 +4,7 @@ export default class InfoPlayer extends Component {
     render() {
         return (
             <div>
-                <p>heyyy</p>
+                <h1>okkk</h1>
             </div>
         )
     }
