@@ -7,46 +7,55 @@ export default class Profile extends Component {
   state = {
     username: "",
     email: ""
-  }
+  };
   componentDidMount() {
-    axios.get(`http://localhost:3001/api/User/${this.props.match.params.id}`).then(res => {
-      console.log(res.data)
-      this.setState({ username: res.data.username, email: res.data.email })
-    }).catch(dbErr => console.log(dbErr.response))
-
-
+    axios
+      .get(`http://localhost:3001/api/User/${this.props.match.params.id}`)
+      .then(res => {
+        console.log(res.data);
+        this.setState({ username: res.data.username, email: res.data.email });
+      })
+      .catch(dbErr => console.log(dbErr.response));
   }
 
-  handleChange = (e) => {
+  handleChange = e => {
     const { name, value } = e.target;
     this.setState({ [name]: value });
-    console.log(this.state)
-  }
+    console.log(this.state);
+  };
 
-  handleSubmit = (e) => {
-    e.preventDefault()
-    axios.patch(`http://localhost:3001/api/User/${this.props.match.params.id}`, this.state)
+  handleSubmit = e => {
+    e.preventDefault();
+    axios
+      .patch(
+        `http://localhost:3001/api/User/${this.props.match.params.id}`,
+        this.state
+      )
       .then(res => {
-        console.log(res, "update")
-      }).catch(dbErr => console.log(dbErr.response))
-  }
+        console.log(res, "update");
+      })
+      .catch(dbErr => console.log(dbErr.response));
+  };
 
-  deleteAccount = (e) => {
-    axios.delete(`http://localhost:3001/api/User/${this.props.match.params.id}`).then(res => {
-      console.log(res.data)
-      this.setState({ username: res.data.username, email: res.data.email })
-    }).catch(dbErr => console.log(dbErr.response))
-  }
+  deleteAccount = e => {
+    axios
+      .delete(`http://localhost:3001/api/User/${this.props.match.params.id}`)
+      .then(res => {
+        console.log(res.data);
+        this.setState({ username: res.data.username, email: res.data.email });
+      })
+      .catch(dbErr => console.log(dbErr.response));
+  };
 
   render() {
-    console.log(this.props.match.params)
+    console.log(this.props.match.params);
     return (
       <div>
         <NavMain />
         <div className="profileContainer">
           <h1 className="profileTitle">My Profile</h1>
           <div className="smallerProfile">
-            <form onChange={(e) => this.handleChange(e)} >
+            <form onChange={e => this.handleChange(e)}>
               <div className="formProfContainer">
                 <h2 className="editProfile">Want to make some changes? </h2>
                 <div className="boxSignProfile">
@@ -86,15 +95,20 @@ export default class Profile extends Component {
                   />
                 </div>
                 <div className="buttons">
-                  <div className="boxButtonProfile" onClick={(e) => this.handleSubmit(e)}>
-                    <a className="btnSign" href="/menu">
-                      Save
-                  </a>
+                  <div
+                    className="buttonsProfile"
+                    onClick={e => this.handleSubmit(e)}
+                    href="/menu"
+                  >
+                    Save
                   </div>
-                  <div className="boxButtonProfile" onClick={(e) => this.deleteAccount(e)}>
-                    <a className="btnSign" href="/">
-                      Delete
-                  </a>
+                  <div
+                    className="buttonsProfile"
+                    onClick={e => this.deleteAccount(e)}
+                    a
+                    href="/"
+                  >
+                    Delete
                   </div>
                 </div>
               </div>
@@ -107,7 +121,7 @@ export default class Profile extends Component {
           </div>
         </div>
         <Footer />
-      </div >
+      </div>
     );
   }
 }
