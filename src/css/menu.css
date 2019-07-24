@@ -13,9 +13,10 @@
 
 .navMain-title {
   margin: 0;
-  color: aliceblue;
+  color: white;
   font-family: "VT323", monospace;
   font-size: 3rem;
+  margin-left: 10px;
 }
 
 .navMain-choices {
@@ -41,7 +42,9 @@
 
 .menu-item-container {
   height: 88vh;
-  background-color: green;
+  background-image: url(../img/dayback.png);
+  background-repeat: no-repeat;
+  background-size: cover;
   display: flex;
   align-items: center;
   justify-content: center;

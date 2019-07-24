@@ -34,7 +34,7 @@ export default class SignIn extends Component {
               onSubmit={evt => handleSubmit(evt, signin)}
               onChange={handleChange}
             >
-              <div className="formContainer">
+              <div className="formContainerIn">
                 <div className="boxSign">
                   <label className="emailLabel" htmlFor="email">
                     Email{""}
@@ -64,12 +64,11 @@ export default class SignIn extends Component {
                 <div className="boxButton">
                   <button className="btnSign">SignIn</button>
                 </div>
-                <div className="linkBoxUp">
-                  <a className="linkSign" href="/signup">
+                <div className="linkBox">
+                  <a className="linkSignIn" href="/signup">
                     Sign Up
                   </a>
                 </div>
-                >
               </div>
             </form>
           </div>

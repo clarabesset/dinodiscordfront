@@ -42,34 +42,34 @@ export default class SignUp extends Component {
   render() {
     return (
       <div className="signContainer">
-        <h1 className="signTitle">Sign Up!</h1>
+        <h1 className="signTitleUp">Sign Up!</h1>
         <form onSubmit={this.handleSubmit} onChange={this.handleChange}>
           <div className="formContainer">
             <div className="boxSign">
-              <label className="usernameLabel">Username:</label>
+              <label className="usernameLabelU">Username:</label>
               {/* 	<input type="text" name="username" value={this.state.username} /> */}
-              <input className="username" type="text" name="username" />
+              <input className="usernameU" type="text" name="username" />
             </div>
             <div className="boxSign">
-              <label className="emailLabel">Email:</label>
+              <label className="emailLabelU">Email:</label>
               {/* <input type="text" name="email" value={this.state.email} /> */}
-              <input className="email" type="text" name="email" />
+              <input className="emailU" type="text" name="email" />
             </div>
             <div className="boxSign">
-              <label className="passwordLabel">Password:</label>
+              <label className="passwordLabelU">Password:</label>
               {/* 					<input type="password" name="password" value={this.state.password} /> */}
-              <input className="password" type="password" name="password" />
+              <input className="passwordU" type="password" name="password" />
             </div>
             <div className="boxSign">
-              <label className="passwordLabel">Confirm your password:</label>
+              <label className="passwordLabelCU">Confirm your password:</label>
               {/* 		<input type="password" name="passwordcheck" value={this.state.passwordcheck} /> */}
               <input
-                className="password"
+                className="passwordCU"
                 type="password"
                 name="passwordcheck"
               />
             </div>
-            <div className="boxButton">
+            <div className="boxButtonUpS">
               <button className="btnSign">Submit</button>
             </div>
             <div className="linkBoxUp">

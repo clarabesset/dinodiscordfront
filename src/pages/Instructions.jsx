@@ -29,10 +29,8 @@ export default class Instructions extends Component {
               </p>
             </div>
 
-            <Link to="/menu">
-              <p class="btn" href="#">
-                Back to Menu
-              </p>
+            <Link class="btnBackMenu" to="/menu">
+              <p>Back to Menu</p>
             </Link>
           </div>
         </p>
