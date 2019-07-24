@@ -25,7 +25,7 @@ function Footer() {
         <br />
         <a
           className="footer-title footer-name"
-          href="https://www.linkedin.com/in/gr%C3%A9goire-lescuyer-806a9016b/"
+          href="https://www.linkedin.com/in/gregoirelescuyer/"
           target="_blank"
         >
           Grégoire
