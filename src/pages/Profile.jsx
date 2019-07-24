@@ -9,11 +9,11 @@ export default class Profile extends Component {
     email: ""
   }
   componentDidMount() {
-
     axios.get(`http://localhost:3001/api/User/${this.props.match.params.id}`).then(res => {
       console.log(res.data)
       this.setState({ username: res.data.username, email: res.data.email })
     }).catch(dbErr => console.log(dbErr.response))
+
 
   }
 
@@ -31,6 +31,13 @@ export default class Profile extends Component {
       }).catch(dbErr => console.log(dbErr.response))
   }
 
+  deleteAccount = (e) => {
+    axios.delete(`http://localhost:3001/api/User/${this.props.match.params.id}`).then(res => {
+      console.log(res.data)
+      this.setState({ username: res.data.username, email: res.data.email })
+    }).catch(dbErr => console.log(dbErr.response))
+  }
+
   render() {
     console.log(this.props.match.params)
     return (
@@ -39,7 +46,7 @@ export default class Profile extends Component {
         <div className="profileContainer">
           <h1 className="profileTitle">My Profile</h1>
           <div className="smallerProfile">
-            <form onClick={(e) => this.handleSubmit(e)} onChange={(e) => this.handleChange(e)}>
+            <form onChange={(e) => this.handleChange(e)} >
               <div className="formProfContainer">
                 <h2 className="editProfile">Want to make some changes? </h2>
                 <div className="boxSignProfile">
@@ -78,10 +85,17 @@ export default class Profile extends Component {
                     className="password"
                   />
                 </div>
-                <div className="boxButtonProfile">
-                  <a className="btnSign" href="/menu">
-                    Save changes
+                <div className="buttons">
+                  <div className="boxButtonProfile" onClick={(e) => this.handleSubmit(e)}>
+                    <a className="btnSign" href="/menu">
+                      Save
                   </a>
+                  </div>
+                  <div className="boxButtonProfile" onClick={(e) => this.deleteAccount(e)}>
+                    <a className="btnSign" href="/">
+                      Delete
+                  </a>
+                  </div>
                 </div>
               </div>
             </form>
