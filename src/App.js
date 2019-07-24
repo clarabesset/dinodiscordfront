@@ -32,7 +32,7 @@ function App() {
         <Route path="/result" component={Result} />
         <Route path="/leader-board" component={LeaderBoard} />
         <Route path="/instructions" component={Instructions} />
-        <Route path="/profile" component={Profile} />
+        <Route path="/profile/:id" component={Profile} />
         <Route path="/waiting" component={Waiting} />
       </Switch>
     </div>
