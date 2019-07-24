@@ -18,7 +18,10 @@ export default class KeyListener extends Component {
 				37: 'left',
 				38: 'up'
 			};
-			this.props.movePlayer(moves[e.keyCode], this.props.user._id);
+
+			const possibleKeys = Object.keys(moves).map(k => Number(k));
+
+			if (possibleKeys.includes(e.keyCode)) this.props.movePlayer(moves[e.keyCode], this.props.user._id);
 		})
 
 	};
