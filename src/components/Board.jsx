@@ -3,10 +3,10 @@ import Cell from './Cell';
 import DinoPicker from './../components/DinoPicker';
 import KeyListener from './../components/KeyListener';
 import InfoPlayer from './../components/InfoPlayer';
-import Waiting from './../components/Waiting'
+import Waiting from './../components/Waiting';
 import Result from '../pages/Result';
-import {AuthConsumer} from "../auth/Guard"
- 
+import { AuthConsumer } from '../auth/Guard';
+
 export default class Board extends Component {
 	constructor(props) {
 		super(props);
@@ -19,8 +19,7 @@ export default class Board extends Component {
 	componentDidUpdate() {
 		console.log('updated !!!', this.state.players);
 		if (this.state.players.length === 1 && this.state.step !== 2) {
-      return this.setState({ step: 2 });
-      
+			return this.setState({ step: 2 });
 		} else if (this.state.players.length === 2 && this.state.step !== 3) {
 			return this.launchGame();
 		}
@@ -32,13 +31,12 @@ export default class Board extends Component {
 			return {
 				players: newProps.playersFromServer
 			};
-    } 
-    if (newProps.currentGrid !== null) {
+		}
+		if (newProps.currentGrid !== null) {
 			return {
 				currentGrid: newProps.currentGrid
 			};
-    } 
-    else return null;
+		} else return null;
 	}
 
 	componentDidMount() {
@@ -187,7 +185,6 @@ export default class Board extends Component {
 	countPoints = () => {};
 	render() {
 		return (
-
 			<React.Fragment>
 				{/* <PlayerInfos/> */}
 				{/*  <button onClick={this.handleMovements}>Up</button> */}
@@ -196,23 +193,22 @@ export default class Board extends Component {
 				{this.state.step === 2 && <Waiting />}
 				{this.state.step === 3 && (
 					<div className="smallGameContainer">
-            <AuthConsumer>
-              {({user}) => {return (
-                <React.Fragment>
-                <InfoPlayer user={user}/>
-                				<div className="board">
-							{this.state.currentGrid.length &&
-								this.state.currentGrid.map((cell, i) => {
-									return <Cell player={cell.player} key={i} cell={cell} />;
-								})}
-						</div>
-						<InfoPlayer />
-           </React.Fragment>)
-              }}
-					
-          
-          
-            </AuthConsumer>
+						<AuthConsumer>
+							{({ user }) => {
+								return (
+									<React.Fragment>
+										<InfoPlayer user={user} />
+										<div className="board">
+											{this.state.currentGrid.length &&
+												this.state.currentGrid.map((cell, i) => {
+													return <Cell player={cell.player} key={i} cell={cell} />;
+												})}
+										</div>
+										<InfoPlayer />
+									</React.Fragment>
+								);
+							}}
+						</AuthConsumer>
 					</div>
 				)}
 				{this.state.step === 4 && <Result />}
