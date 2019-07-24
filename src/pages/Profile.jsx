@@ -95,27 +95,24 @@ export default class Profile extends Component {
                   />
                 </div>
                 <div className="buttons">
-                  <div
-                    className="buttonsProfile"
-                    onClick={e => this.handleSubmit(e)}
-                    href="/menu"
-                  >
-                    Save
+                  <div onClick={e => this.handleSubmit(e)}>
+                    <a className="buttonsProfile">Save changes</a>
                   </div>
                   <div
                     className="buttonsProfile"
                     onClick={e => this.deleteAccount(e)}
-                    href="/"
                   >
-                    Delete
+                    <a className="buttonsProfile" href="/">
+                      Delete account
+                    </a>
                   </div>
                 </div>
               </div>
             </form>
             <div className="dinoCool" />
             <div className="scoreBox">
-              <h2 className="editProfile">Score</h2>
-              <p>You currently have a score of {this.state.score}</p>
+              <h2 className="editProfile">Score:</h2>
+              <p>{this.state.score} km&#178;</p>
             </div>
           </div>
         </div>
