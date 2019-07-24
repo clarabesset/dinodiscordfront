@@ -105,7 +105,6 @@ export default class Profile extends Component {
                   <div
                     className="buttonsProfile"
                     onClick={e => this.deleteAccount(e)}
-                    a
                     href="/"
                   >
                     Delete
