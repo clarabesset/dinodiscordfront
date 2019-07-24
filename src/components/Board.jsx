@@ -90,28 +90,9 @@ export default class Board extends Component {
     });
   }
   setPlayer = color => {
-    // console.log('yata ! one player entre dans le game : )', color);
     this.props.socket.emit("player-join", color);
-    // const copy = [...this.state.players];
-    // if (copy.length < 2) {
-    //   copy.push({
-    //     color: color,
-    //     nb: copy.length + 1
-    //   });
-    // this.setState({ players: copy }, () => {
-    //   if (this.state.players.length === 1) {
-
-    //     console.log(this.props.socket);
-    // this.setPlayerPositionInGrid(this.state.players[0], 0);
-    // }
-    // if (this.state.players.length === 2) {
-    // this.setPlayerPositionInGrid(this.state.players[1], 99);
-    // this.setState({ step: 2 });
-    // } // quand deux joueurs sont créés, lancer le jeu
-    // });
-    // }
+   
   };
-  // if cell.player.playernumber == 1 || 2
   movePlayer = (direction, playerNumber) => {
     console.log("player " + playerNumber + " moved " + direction);
     const copiedGrid = [...this.state.currentGrid];
@@ -159,7 +140,6 @@ export default class Board extends Component {
       }
       const nextIndex = currentCellNb + moves[nextDirection];
       console.log("CURRENT CELL", currentCellNb);
-      // return this.state.currentGrid[nextIndex];
       return nextIndex;
     };
     const findPreviousCell = (currentCellNb, nextDirection) => {
@@ -182,13 +162,12 @@ export default class Board extends Component {
         return previousCell;
       }
       console.log("currentCellNb ???", currentCellNb);
-      // return this.state.currentGrid[nextIndex];
+    
     };
     const nextCell = findNextCell(currentCell, direction);
     const previousCell = findPreviousCell(currentCell, direction);
     console.log("previous cell", previousCell);
-    // console.log("currentCell ?" , currentCell)
-    // if (!currentCell) return
+    
     if (nextCell) {
       copiedGrid[currentCell].player = null;
       copiedGrid[currentCell].taken = false;
@@ -202,53 +181,9 @@ export default class Board extends Component {
         // socket.emit('news', { hello: 'world' });
       });
     }
-    // copiedGrid[currentCell.nb].player = null;
-    // copiedGrid[nextCell.nb].player = this.state.players[playerNumber] ;
-    // this.setState({currentGrid: copiedGrid}, () => {
-    //  console.log(this.state.currentGrid)
-    // })
-    // this.setState({})
+   
     return;
-    // if (direction === 'down') {
-    // r.player
-    //  const nextPosition = copiedGrid.filter(
-    //  (cell) =>
-    //    cell.x === playerPosition.x && cell.y === playerPosition.y+1
-    // )[0];
-    // console.log(nextPosition);
-    // console.log(this.state.currentGrid[nextPosition])
-    // nextPosition.taken = true;
-    // nextPosition.color = playerPosition.player.color;
-    // this.setState({currentGrid[]})
-    // }
-    // if (direction === 'right') {
-    //  const nextPosition = copiedGrid.filter(
-    //      (cell) =>
-    //        cell.x === playerPosition.x+1 && cell.y === playerPosition.y
-    //  )[0];
-    //  console.log(nextPosition);
-    // }
-    // if (direction === 'left') {
-    //  const nextPosition = copiedGrid.filter(
-    //      (cell) =>
-    //        cell.x === playerPosition.x-1 && cell.y === playerPosition.y+1
-    //  )[0];
-    //  console.log(nextPosition);
-    // }
-    // if (direction === 'up') {
-    //  const nextPosition = copiedGrid.filter(
-    //      (cell) =>
-    //        cell.x === playerPosition.x && cell.y === playerPosition.y-1
-    //  )[0];
-    //  console.log(nextPosition);
-    // }
-    /*         handleChange: function (e) {
-            item = this.state.items[1];
-            item.name = 'newName';
-            items[1] = item;
-         
-            this.setState({items: items});
-         } */
+   
   };
   countPoints = () => {};
   render() {
