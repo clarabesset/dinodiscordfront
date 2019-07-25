@@ -25,7 +25,7 @@ body {
   color: black;
   text-align: center;
   line-height: 60px;
-  margin: 60px 120px 65px 120px;
+  margin: 20px 120px 125px 120px;
 }
 
 .title {
@@ -111,6 +111,6 @@ a {
   width: 150px;
   height: 40px;
   text-align: center;
-  margin: 20px 530px;
+  margin: 23px 530px;
   line-height: 15px !important;
 }

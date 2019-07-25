@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import NavMain from "../components/NavMain";
-import Board from "../components/LeaderBoard";
+import Leaderboard from "../components/LeaderBoardCompo";
 import Footer from "../components/Footer";
 
 export default class LeaderBoard extends Component {
@@ -8,7 +8,7 @@ export default class LeaderBoard extends Component {
     return (
       <div className="leaderContainer">
         <NavMain />
-        <Board />
+        <Leaderboard />
         <Footer />
       </div>
     );

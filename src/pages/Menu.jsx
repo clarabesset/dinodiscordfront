@@ -41,7 +41,7 @@ export default class Menu extends Component {
                   <NavLink className="menu-btn otherButton" to="/instructions">
                     Instructions
                   </NavLink>
-                  <NavLink className="menu-btn otherButton" to="/leader-board">
+                  <NavLink className="menu-btn otherButton" to="/leaderboard">
                     Leaderboard
                   </NavLink>
                 </div>
