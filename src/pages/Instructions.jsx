@@ -15,16 +15,12 @@ export default class Instructions extends Component {
           <p>
             You have to conquer more territory than your opponent. One cell of
             your color = one point for you. You can totally steal the cells of
-            the other dino!
+            the other dino! Use the arrows on your keyboard to move around.
           </p>
           <div className="explain" id="commands">
+            <p>Use the arrows on your keyboard to move around.</p>
             <p>
-              Player One, press Z to go up, S to go down, Q to go left and D to
-              go right.
-            </p>
-            <p>
-              Player Two, press Up to go up, Down to go down, Left to go left
-              and Right to go right.
+              You have 30 seconds to get claim the most km<sup>2</sup>
             </p>
             <p id="fight">
               Now, <span id="fightReally">fight!</span>
