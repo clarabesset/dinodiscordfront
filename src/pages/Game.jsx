@@ -6,7 +6,6 @@ import blue from './../img/blue_dino_short.gif';
 import green from './../img/green_dino_short.gif';
 import yellow from './../img/yellow_dino_short.gif';
 import red from './../img/red_dino_short.gif';
-import MusicGame from '../components/MusicGame';
 
 export default class Game extends Component {
 	state = {
@@ -61,7 +60,6 @@ export default class Game extends Component {
 	render() {
 		return (
 			<div className="gameContainer">
-				<MusicGame />
 				<div class="titleGame">Dino Discord</div>
 				<div class="boardContainer">
 					<AuthConsumer>

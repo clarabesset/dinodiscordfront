@@ -4,7 +4,7 @@ export default class Timer extends React.Component {
 	constructor() {
 		super();
 		this.state = {
-			breakRemainingSeconds: 3
+			breakRemainingSeconds: 30
 		};
 	}
 

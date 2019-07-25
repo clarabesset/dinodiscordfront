@@ -6,6 +6,8 @@ import InfoPlayer from './../components/InfoPlayer';
 import Waiting from './../components/Waiting';
 import Result from '../pages/Result';
 import Timer from '../components/Timer';
+import TimerBeforeGame from '../components/TimerBeforeGame';
+import MusicGame from '../components/MusicGame';
 
 export default class Board extends Component {
 	constructor(props) {
@@ -18,22 +20,17 @@ export default class Board extends Component {
 		};
 	}
 	componentDidUpdate() {
-		// console.log('updated !!!', this.state.players);
 		if (this.state.players.length === 1 && this.state.step !== 2) {
 			this.setState({ ready: true, step: 2 });
 		}
-
 		if (this.state.players.length === 2 && this.state.step === 1 && !this.state.ready) {
 			this.setState({ ready: true, step: 2 }, () => {
 				this.props.socket.emit('generate-grid');
 			});
 		}
-
 		if (this.state.currentGrid.length && this.state.step === 2) {
-			// console.log('here ... good to go :)');
 			this.setState({ step: 3 });
 		}
-		// console.log(this.state.currentGrid)
 	}
 
 	static getDerivedStateFromProps(newProps, state) {
@@ -45,6 +42,10 @@ export default class Board extends Component {
 			ready: newProps.ready && newProps.ready === true ? true : false
 		};
 	}
+
+	timer = () => {
+		this.child.current.countDown();
+	};
 
 	prepareGame() {
 		// this.setState({ step: 2 }, () => {
@@ -58,7 +59,7 @@ export default class Board extends Component {
 	}
 
 	setPlayer = (color) => {
-		this.props.socket.emit('player-join', {userInfos: this.props.user, color});
+		this.props.socket.emit('player-join', { userInfos: this.props.user, color });
 	};
 
 	movePlayer = (direction, playerId) => {
@@ -69,16 +70,23 @@ export default class Board extends Component {
 
 	stopTimer = () => {
 		// console.log('je marrete')
-		this.setState({step: 4}, () => {
+		this.setState({ step: 4 }, () => {
 			this.props.socket.emit('get-result', this.state.players);
-		})
-	}
+		});
+	};
 
 	render() {
 		return (
 			<React.Fragment>
 				{this.state.step === 3 && (
-				<KeyListener user={this.props.user} currentGrid={this.state.currentGrid} movePlayer={this.movePlayer} />
+					<div>
+						<KeyListener
+							user={this.props.user}
+							currentGrid={this.state.currentGrid}
+							movePlayer={this.movePlayer}
+						/>
+						<MusicGame />
+					</div>
 				)}
 				{this.state.step === 1 && (
 					<DinoPicker availableDinos={this.props.availableDinos} setPlayer={this.setPlayer} />
@@ -87,7 +95,8 @@ export default class Board extends Component {
 				{this.state.step === 3 && (
 					<div className="smallGameContainer">
 						<React.Fragment>
-							<Timer stopTimer={this.stopTimer}/>
+							<TimerBeforeGame go={Boolean(this.state.currentGrid.length)} stopTimer={this.stopTimer} />
+							<Timer stopTimer={this.stopTimer} />
 							<InfoPlayer user={this.props.user} points={this.countPoints} />
 							<div className="board">
 								{this.state.currentGrid.length &&
@@ -95,7 +104,7 @@ export default class Board extends Component {
 										return <Cell player={cell.player} key={i} cell={cell} />;
 									})}
 							</div>
-							<InfoPlayer user={this.state.players[0].details}/>
+							<InfoPlayer user={this.state.players[0].details} />
 						</React.Fragment>
 					</div>
 				)}
