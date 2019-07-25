@@ -1,8 +1,4 @@
 import React, { Component } from "react";
-import blue from "./../img/blue_dino_short.gif";
-import green from "./../img/green_dino_short.gif";
-import yellow from "./../img/yellow_dino_short.gif";
-import red from "./../img/red_dino_short.gif";
 import Dino from "./OneDino";
 
 export default class DinoPicker extends Component {

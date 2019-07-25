@@ -62,6 +62,7 @@ export default class Game extends Component {
 					<AuthConsumer>
 						{({ user }) => {
 							return (
+								<>
 								<Board
 									user={user}
 									availableDinos={this.state.dinos}
@@ -70,6 +71,7 @@ export default class Game extends Component {
 									playersFromServer={this.state.playersFromServer}
 									socket={this.state.socket}
 								/>
+								</>
 							);
 						}}
 					</AuthConsumer>
