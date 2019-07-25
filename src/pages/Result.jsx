@@ -6,11 +6,14 @@ export default class Result extends Component {
     return (
       <div className="resultContainer">
         <MusicWin />
-        <div className="titleResult">*Winning Player* you win!!</div>
+        {this.props.result && <React.Fragment>
+        <div className="titleResult">*Winning Player {this.props.result.winner} you win!!</div>
         <div className="containerWinDino">
-          <div class="box1 sb7">with 430 points bitch</div>
+          <div class="box1 sb7">with {this.props.result[this.props.result.winner]} points bitch</div>
           <div className="gifWinner" />
         </div>
+        </React.Fragment>
+        }
       </div>
     );
   }

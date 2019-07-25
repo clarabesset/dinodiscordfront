@@ -15,6 +15,7 @@ export default class Game extends Component {
 		playersFromServer: [],
 		currentGrid: [],
 		ready: false,
+		result: null,
 		dinos: [
 			{ color: 'red', img: red },
 			{ color: 'blue', img: blue },
@@ -24,7 +25,7 @@ export default class Game extends Component {
 	};
 
 	setAvailableDinos = (pickedColor) => {
-		console.log(pickedColor);
+		// console.log(pickedColor);
 		const remainingDinos = this.state.dinos.filter((d) => d.color !== pickedColor);
 		this.setState({ dinos: remainingDinos });
 	};
@@ -32,7 +33,7 @@ export default class Game extends Component {
 	componentDidMount() {
 		this.setState({ socket: socketIO.connect(process.env.REACT_APP_BACKEND_URL + '/room') }, () => {
 			this.state.socket.on('confirm-player-join', (players) => {
-				console.log('player has join the waiting room', players);
+				// console.log('player has join the waiting room', players);
 				this.setState({ playersFromServer: players });
 			});
 
@@ -41,15 +42,19 @@ export default class Game extends Component {
 			});
 
 			this.state.socket.on('ready-to-play', (data) => {
-				console.log('grid has been served', data);
+				// console.log('grid has been served', data);
 				this.setState({ currentGrid: data.gridModel, playersFromServer: data.players }, () => {
-					console.log(this.state.playersFromServer);
-					console.log(this.state.currentGrid);
+					// console.log(this.state.playersFromServer);
+					// console.log(this.state.currentGrid);
 				});
 			});
 
 			this.state.socket.on('update-grid', (updatedGrid) => {
 				this.setState({ currentGrid: updatedGrid });
+			});
+
+			this.state.socket.on('set-result', (result) => {
+				this.setState({ result: result });
 			});
 		});
 	}
@@ -64,6 +69,7 @@ export default class Game extends Component {
 							return (
 								<>
 								<Board
+									result={this.state.result}
 									user={user}
 									availableDinos={this.state.dinos}
 									ready={this.state.ready}

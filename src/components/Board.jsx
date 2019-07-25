@@ -18,7 +18,7 @@ export default class Board extends Component {
 		};
 	}
 	componentDidUpdate() {
-		console.log('updated !!!', this.state.players);
+		// console.log('updated !!!', this.state.players);
 		if (this.state.players.length === 1 && this.state.step !== 2) {
 			this.setState({ ready: true, step: 2 });
 		}
@@ -30,28 +30,20 @@ export default class Board extends Component {
 		}
 
 		if (this.state.currentGrid.length && this.state.step === 2) {
-			console.log('here ... good to go :)');
+			// console.log('here ... good to go :)');
 			this.setState({ step: 3 });
-
-			// return this.launchGame();
 		}
+		// console.log(this.state.currentGrid)
 	}
 
 	static getDerivedStateFromProps(newProps, state) {
-		console.log('@getdirevedstatefrompropsnewProps => ', newProps, state);
-		// if (newProps.playersFromServer.length !== state.players) {
+		// console.log('@getdirevedstatefrompropsnewProps => ', newProps, state);
 		return {
 			currentGrid: newProps.currentGrid.length ? newProps.currentGrid : state.currentGrid,
 			players:
 				newProps.playersFromServer.length !== state.players.length ? newProps.playersFromServer : state.players,
 			ready: newProps.ready && newProps.ready === true ? true : false
 		};
-		// }
-		// if (newProps.currentGrid !== null) {
-		// 	return {
-		// 		currentGrid: newProps.currentGrid
-		// 	};
-		// } else return null;
 	}
 
 	prepareGame() {
@@ -61,7 +53,7 @@ export default class Board extends Component {
 	}
 
 	launchGame() {
-		console.log('to the next step', this.state.players);
+		// console.log('to the next step', this.state.players);
 		this.setState({ step: 3 });
 	}
 
@@ -70,23 +62,24 @@ export default class Board extends Component {
 	};
 
 	movePlayer = (direction, playerId) => {
-		console.log(direction, playerId);
+		// console.log(direction, playerId);
 		this.props.socket.emit('player-move', { direction, playerId });
 		//this.props.socket.broadcast.emit('player-move', {direction, playerId});
 	};
 
 	stopTimer = () => {
-		console.log('je marrete')
-		this.setState({step: 4})
+		// console.log('je marrete')
+		this.setState({step: 4}, () => {
+			this.props.socket.emit('get-result', this.state.players);
+		})
 	}
 
-	countPoints = () => {};
 	render() {
 		return (
 			<React.Fragment>
-				this.state.step === 3 && (
+				{this.state.step === 3 && (
 				<KeyListener user={this.props.user} currentGrid={this.state.currentGrid} movePlayer={this.movePlayer} />
-				) );
+				)}
 				{this.state.step === 1 && (
 					<DinoPicker availableDinos={this.props.availableDinos} setPlayer={this.setPlayer} />
 				)}
@@ -95,18 +88,18 @@ export default class Board extends Component {
 					<div className="smallGameContainer">
 						<React.Fragment>
 							<Timer stopTimer={this.stopTimer}/>
-							<InfoPlayer user={this.props.user} />
+							<InfoPlayer user={this.props.user} points={this.countPoints} />
 							<div className="board">
 								{this.state.currentGrid.length &&
 									this.state.currentGrid.map((cell, i) => {
 										return <Cell player={cell.player} key={i} cell={cell} />;
 									})}
 							</div>
-							<InfoPlayer />
+							<InfoPlayer user={this.state.players[0].details}/>
 						</React.Fragment>
 					</div>
 				)}
-				{this.state.step === 4 && <Result />}
+				{this.state.step === 4 && <Result result={this.props.result} />}
 			</React.Fragment>
 		);
 	}
