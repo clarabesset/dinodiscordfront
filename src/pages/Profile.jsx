@@ -28,9 +28,9 @@ export default class Profile extends Component {
     this.setState({ [name]: value });
     console.log(this.state);
   };
-
   handleSubmit = e => {
     e.preventDefault();
+    alert("The changes to your dino profile have been saved!");
     axios
       .patch(
         `http://localhost:3001/api/User/${this.props.match.params.id}`,
