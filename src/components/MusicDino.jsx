@@ -5,7 +5,7 @@ const MusicDIno = React.memo(function MusicDino() {
   console.log("sound");
   return (
     <Sound
-      url="./../music/yoshi.mp3"
+      url="./../music/yoshishort.mp3"
       playStatus={Sound.status.PLAYING}
       playFromPosition={300}
       // onLoading={this.handleSongLoading}

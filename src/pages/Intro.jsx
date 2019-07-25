@@ -41,13 +41,13 @@ export default class Intro extends Component {
           clearInterval(intervarlId);
           this.props.history.push("/menu");
         }
-      }, 10000);
+      }, 10300);
     }, 0);
   }
 
   render() {
     return (
-      <div className="bigIntro">
+      <div className="slide-out-fwd-center bigIntro">
         <div className="intro">
           <MusicDino />
           {this.state.currentIndex === 0 && (

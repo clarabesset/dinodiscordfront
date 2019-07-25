@@ -11,7 +11,7 @@ function Footer() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          > Camille
+          Camille
         </a>
         <p className="footer-coma">,</p>
         <br />
@@ -21,7 +21,7 @@ function Footer() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          > Clara
+          Clara
         </a>
         <p className="footer-coma">, </p>
         <br />
@@ -42,7 +42,7 @@ function Footer() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          > Octave
+          Octave
         </a>
         <br />
         <p className="footer-title">- Enjoy the game :)</p>
