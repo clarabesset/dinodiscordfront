@@ -16,7 +16,7 @@
   color: white;
   font-family: "VT323", monospace;
   font-size: 3rem;
-  margin-left: 10px;
+  margin-left: 12px;
 }
 
 .navMain-title:hover {
@@ -140,7 +140,7 @@
 .menu-btn:focus::after,
 .menu-btn:hover::after {
   color: SeaGreen !important;
-  box-shadow: inset -6px -6px SeaGreen;
+  box-shadow: inset -6px -6px #2e8b57;
 }
 
 .otherButton {
