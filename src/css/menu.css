@@ -41,7 +41,7 @@
   display: flex;
   font-family: "VT323", monospace;
   color: white;
-  margin-left: 5px;
+  margin-left: 10px;
 }
 
 .footer-name:hover {
