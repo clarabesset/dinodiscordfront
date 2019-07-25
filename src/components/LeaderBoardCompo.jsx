@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import DinoRed from "./../img/red_dino_short.gif";
 import axios from "axios";
 var count = 0;
-export default class LeaderBoard extends Component {
+export default class LeaderBoardCompo extends Component {
   state = {
     users: []
   };
@@ -18,7 +18,7 @@ export default class LeaderBoard extends Component {
   render() {
     return (
       <div className="leaderboard">
-        <h1>Leaderboard</h1>
+        <h1>Here are the most ferocious dinos:</h1>
         <table className="table">
           <thead>
             <tr>

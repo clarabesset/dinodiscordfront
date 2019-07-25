@@ -30,7 +30,7 @@ function App({ location }) {
         <ProtectedRoute path="/menu" component={Menu} />
         <Route path="/game" component={Game} />
         <Route path="/result" component={Result} />
-        <Route path="/leader-board" component={LeaderBoard} />
+        <Route path="/leaderboard" component={LeaderBoard} />
         <Route path="/instructions" component={Instructions} />
         <Route path="/profile/:id" component={Profile} />
         <Route path="/waiting" component={Waiting} />
