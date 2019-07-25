@@ -129,7 +129,7 @@ export default class Board extends Component {
 						</React.Fragment>
 					</div>
 				)}
-				{this.state.step === 4 && <Result result={this.props.result} />}
+				{this.state.step === 4 && <Result players={this.state.players} result={this.props.result} />}
 			</React.Fragment>
 		);
 	}
