@@ -4,6 +4,7 @@ import blue from "./../img/blue_dino_short.gif";
 import green from "./../img/green_dino_short.gif";
 import yellow from "./../img/yellow_dino_short.gif";
 import red from "./../img/red_dino_short.gif";
+import { Link } from "react-router-dom";
 
 const colors = {
   blue,
@@ -20,7 +21,8 @@ export default class Result extends Component {
         {this.props.result && (
           <React.Fragment>
             <div className="titleResult">
-              Player {this.props.result.winner} you win!!
+              Player {this.props.result[this.props.result.winner.username]} you
+              win!!
             </div>
             <div className="containerWinDino">
               <div className="crowntext">
@@ -36,6 +38,9 @@ export default class Result extends Component {
                   alt="la win frère"
                 />
               </div>
+              <Link to="/menu" className="playAgain">
+                Play Again dude
+              </Link>
             </div>
           </React.Fragment>
         )}

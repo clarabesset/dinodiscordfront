@@ -16,7 +16,20 @@
   background-size: cover;
   width: 200px;
   height: 200px;
-  margin: 0px 460px 50px 500px;
+  margin: 0px 460px 10px 500px;
+}
+
+.playAgain {
+  font-size: 30px;
+  color: white;
+}
+
+.playAgain:active {
+  color: white;
+}
+
+.playAgain:hover {
+  color: #80a841;
 }
 
 body {
