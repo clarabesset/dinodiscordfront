@@ -7,26 +7,29 @@ function Footer() {
         <p className="footer-title">Made with anxiety & passion by</p>
         <a
           className="footer-title footer-name"
-          href="https://www.linkedin.com/in/camille-charpentier/"
+          href={`https://www.linkedin.com/in/camille-charpentier/`}
           target="_blank"
+          rel="noopener noreferrer"
         >
-          Camille
+          > Camille
         </a>
         <p className="footer-coma">,</p>
         <br />
         <a
           className="footer-title footer-name"
-          href="https://www.linkedin.com/in/clarabesset/"
+          href={`https://www.linkedin.com/in/clarabesset/`}
           target="_blank"
+          rel="noopener noreferrer"
         >
-          Clara
+          > Clara
         </a>
         <p className="footer-coma">, </p>
         <br />
         <a
           className="footer-title footer-name"
-          href="https://www.linkedin.com/in/gregoirelescuyer/"
+          href={`https://www.linkedin.com/in/gregoirelescuyer/`}
           target="_blank"
+          rel="noopener noreferrer"
         >
           Grégoire
         </a>
@@ -35,10 +38,11 @@ function Footer() {
         <br />
         <a
           className="footer-title footer-name"
-          href="https://www.linkedin.com/in/octavestoufflet/"
+          href={`https://www.linkedin.com/in/octavestoufflet/`}
           target="_blank"
+          rel="noopener noreferrer"
         >
-          Octave
+          > Octave
         </a>
         <br />
         <p className="footer-title">- Enjoy the game :)</p>

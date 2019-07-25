@@ -15,9 +15,10 @@ import Instructions from "./pages/Instructions";
 import Profile from "./pages/Profile";
 import ProtectedRoute from "./auth/ProtectedRoute";
 import Waiting from "./components/Waiting";
+
 // import DinoPicker from "./pages/DinoPicker";
 
-function App() {
+function App({ location }) {
   return (
     <div>
       <Switch>
@@ -26,7 +27,6 @@ function App() {
         <Route path="/intro" component={Intro} />
         <Route path="/whats-ur-name" component={WhatsurName} />
         <Route path="/signup" component={SignUp} />
-
         <ProtectedRoute path="/menu" component={Menu} />
         <Route path="/game" component={Game} />
         <Route path="/result" component={Result} />
