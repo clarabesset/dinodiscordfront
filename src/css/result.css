@@ -16,7 +16,7 @@
   background-size: cover;
   width: 200px;
   height: 200px;
-  margin: 0px 460px 10px 500px;
+  margin: 0px 380px 10px 418px;
 }
 
 .playAgain {
@@ -67,6 +67,7 @@ body {
   display: flex;
   flex-direction: column;
   height: 140px;
+  margin: 0;
 }
 
 .crowntext {
@@ -82,7 +83,7 @@ body {
   width: 200px;
   height: 200px;
   padding-top: 20px;
-  margin: 50px -25px 0 500px;
+  margin: 50px -25px 0 400px;
 }
 
 .box1 {
@@ -95,6 +96,7 @@ body {
   font-weight: 900;
   color: white;
   position: relative;
+  background: black;
 }
 
 .sb7:before {
