@@ -1,27 +1,18 @@
-import React, { Component } from "react";
-import axios from "axios";
-
+import React, { Component } from 'react';
 export default class InfoPlayer extends Component {
-  state = {
-    users: []
-  };
-  componentDidMount() {
-    axios
-      .get(`http://localhost:3001/api/User/5d370c14d5d180d07b892e84`)
-      .then(res => {
-        this.setState({ users: res.data });
-      });
-  }
-  render() {
-    console.log(this.props);
-    return (
-      <div>
-        <div className="infoBoard">
-          <h2>Username: {this.state.users.username} </h2>
-          <br />
-          <h2>Score: {this.state.users.score} </h2>
-        </div>
-      </div>
-    );
-  }
+	state = {
+		users: []
+	};
+	render() {
+		console.log(this.props.user);
+		return (
+			<div>
+				<div className="infoBoard">
+					<h2>{this.props.user.username}</h2>
+					<br />
+				{/* 	<h2>Score: {this.props.user.score} </h2> */}
+			</div>
+			</div>
+		);
+	}
 }
