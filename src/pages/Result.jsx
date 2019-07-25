@@ -14,6 +14,13 @@ const colors = {
 };
 
 export default class Result extends Component {
+  state = {};
+
+  static getDerivedStateFromProps(newProps, state) {
+    console.log(newProps);
+    return null;
+  }
+
   render() {
     return (
       <div className="resultContainer">
@@ -21,8 +28,12 @@ export default class Result extends Component {
         {this.props.result && (
           <React.Fragment>
             <div className="titleResult">
-              Player {this.props.result[this.props.result.winner.username]} you
-              win!!
+              Dino{" "}
+              {
+                this.props.players[this.props.result.winner - 1].details
+                  .username
+              }{" "}
+              you win!!
             </div>
             <div className="containerWinDino">
               <div className="crowntext">

@@ -2,7 +2,6 @@
   background-image: url("../img/stars.gif");
   background-repeat: no-repeat;
   background-size: cover;
-  background-color: black;
   background-position: 0 40%;
   height: 65vh;
   display: flex;
@@ -96,7 +95,12 @@ body {
   font-weight: 900;
   color: white;
   position: relative;
-  background: black;
+  background-color: rgba(
+    0,
+    0,
+    0,
+    0.3
+  ); /* un arrière plan bleu à 50% de transparence */
 }
 
 .sb7:before {
