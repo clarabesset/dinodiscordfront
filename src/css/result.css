@@ -10,7 +10,7 @@
 }
 
 .gifWinner {
-  background-image: url("../img/red_dino_short.gif");
+  /* background-image: url("../img/red_dino_short.gif"); */
   background-repeat: no-repeat;
   background-size: cover;
   width: 200px;
