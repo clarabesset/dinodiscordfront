@@ -48,17 +48,32 @@ export default class SignUp extends Component {
             <div className="boxSign">
               <label className="usernameLabelU">Username:</label>
               {/* 	<input type="text" name="username" value={this.state.username} /> */}
-              <input className="usernameU" type="text" name="username" />
+              <input
+                placeholder="username"
+                className="usernameU"
+                type="text"
+                name="username"
+              />
             </div>
             <div className="boxSign">
               <label className="emailLabelU">Email:</label>
               {/* <input type="text" name="email" value={this.state.email} /> */}
-              <input className="emailU" type="text" name="email" />
+              <input
+                placeholder="email@email.com"
+                className="emailU"
+                type="text"
+                name="email"
+              />
             </div>
             <div className="boxSign">
               <label className="passwordLabelU">Password:</label>
               {/* 					<input type="password" name="password" value={this.state.password} /> */}
-              <input className="passwordU" type="password" name="password" />
+              <input
+                placeholder="password"
+                className="passwordU"
+                type="password"
+                name="password"
+              />
             </div>
             <div className="boxSign">
               <label className="passwordLabelCU">Confirm your password:</label>
@@ -66,7 +81,8 @@ export default class SignUp extends Component {
               <input
                 className="passwordCU"
                 type="password"
-                name="passwordcheck"
+                name="password"
+                placeholder="password"
               />
             </div>
             <div className="boxButtonUpS">
