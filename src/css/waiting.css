@@ -8,13 +8,14 @@
 
 .titleWait {
   font-size: 50px;
-  margin: 20px;
+  margin-top: 40px;
   color: black;
 }
 
 .textWait {
   font-size: 30px;
   color: black;
+  margin-top: 20px;
 }
 
 .imagesWait {
@@ -24,7 +25,7 @@
 }
 
 .myDino {
-  margin: 50px 120px;
+  margin: 30px 120px;
   height: 200px;
   width: 200px;
   background-repeat: no-repeat;
@@ -33,9 +34,9 @@
 
 .gifWait {
   background-image: url(../img/dinowait.gif);
-  margin: 50px 80px;
-  height: 300px;
-  width: 300px;
+  height: 200px;
+  width: 200px;
+  margin-top: 50px;
   background-repeat: no-repeat;
   background-size: contain;
 }
