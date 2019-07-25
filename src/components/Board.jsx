@@ -5,8 +5,7 @@ import KeyListener from './../components/KeyListener';
 import InfoPlayer from './../components/InfoPlayer';
 import Waiting from './../components/Waiting';
 import Result from '../pages/Result';
-import Timer from '../components/Timer';
-import TimerBeforeGame from '../components/TimerBeforeGame';
+import Timer from './Timer';
 import MusicGame from '../components/MusicGame';
 
 export default class Board extends Component {
@@ -16,6 +15,7 @@ export default class Board extends Component {
 			currentGrid: [],
 			players: [],
 			ready: false,
+			launched: false,
 			step: 1 // changer la vue pour les différentes étapes du jeu
 		};
 	}
@@ -68,8 +68,21 @@ export default class Board extends Component {
 		//this.props.socket.broadcast.emit('player-move', {direction, playerId});
 	};
 
-	stopTimer = () => {
-		// console.log('je marrete')
+	// setGameCountDown = () => {
+	// 	console.log("@setgamecountDown")
+	// 	// this.setState = { go: true };
+	// 	setInterval(() => {
+	// 		console.log('this is being called from the board');
+	// 	}, 1000);
+	// };
+
+	startGame = () => {
+		console.log('je start game', this.setState);
+		this.setState({ launched: true });
+	};
+
+	stopGame = () => {
+		console.log('je marrete', this.setState);
 		this.setState({ step: 4 }, () => {
 			this.props.socket.emit('get-result', this.state.players);
 		});
@@ -95,8 +108,16 @@ export default class Board extends Component {
 				{this.state.step === 3 && (
 					<div className="smallGameContainer">
 						<React.Fragment>
-							<TimerBeforeGame go={Boolean(this.state.currentGrid.length)} stopTimer={this.stopTimer} />
-							<Timer stopTimer={this.stopTimer} />
+							{this.state.launched === false && <Timer
+								limit={3}
+								go={Boolean(this.state.currentGrid.length)}
+								clbk={this.startGame}
+							/>}
+							{this.state.launched === true && <Timer
+								limit={10}
+								go={Boolean(this.state.currentGrid.length)}
+								clbk={this.stopGame}
+							/>}
 							<InfoPlayer user={this.props.user} points={this.countPoints} />
 							<div className="board">
 								{this.state.currentGrid.length &&
