@@ -119,14 +119,14 @@ export default class Board extends Component {
 								go={Boolean(this.state.currentGrid.length)}
 								clbk={this.stopGame}
 							/>}
-							<InfoPlayer user={this.props.user} points={this.countPoints} />
+							<InfoPlayer player={this.state.players[0]} user={this.props.user} />
 							<div className="board">
 								{this.state.currentGrid.length &&
 									this.state.currentGrid.map((cell, i) => {
 										return <Cell player={cell.player} key={i} cell={cell} />;
 									})}
 							</div>
-							<InfoPlayer user={this.state.players[0].details} />
+							<InfoPlayer player={this.state.players[1]} user={this.state.players[0].details} />
 						</React.Fragment>
 					</div>
 				)}
