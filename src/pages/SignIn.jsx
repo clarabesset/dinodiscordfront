@@ -4,7 +4,7 @@ import { AuthConsumer } from "./../auth/Guard";
 export default class SignIn extends Component {
   state = {
     email: "octave@heetch.com",
-    password: "123Soleil"
+    password: "123"
   };
 
   handleSubmit = (evt, signin) => {
