@@ -34,6 +34,7 @@ body {
   background: linear-gradient(92deg, #95d7e3, #eb76ff);
   background: -webkit-linear-gradient(92deg, #95d7e3, #eb76ff);
   background-size: 600vw 600vw;
+  background-clip: inherit;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
