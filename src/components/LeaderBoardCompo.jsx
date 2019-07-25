@@ -7,7 +7,7 @@ export default class LeaderBoardCompo extends Component {
     users: []
   };
   componentDidMount() {
-    axios.get("http://localhost:3001/api/User").then(res => {
+    axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/User`).then(res => {
       console.log(res);
       const sorted = res.data.sort((a, b) => {
         return parseFloat(b.score) - parseFloat(a.score);

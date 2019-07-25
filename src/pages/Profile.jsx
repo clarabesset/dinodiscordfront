@@ -11,7 +11,7 @@ export default class Profile extends Component {
   };
   componentDidMount() {
     axios
-      .get(`http://localhost:3001/api/User/${this.props.match.params.id}`)
+      .get(`${process.env.REACT_APP_BACKEND_URL}/api/User/${this.props.match.params.id}`)
       .then(res => {
         console.log(res.data);
         this.setState({
@@ -33,7 +33,7 @@ export default class Profile extends Component {
     alert("The changes to your dino profile have been saved!");
     axios
       .patch(
-        `http://localhost:3001/api/User/${this.props.match.params.id}`,
+        `${process.env.REACT_APP_BACKEND_URL}/api/User/${this.props.match.params.id}`,
         this.state
       )
       .then(res => {
@@ -44,7 +44,7 @@ export default class Profile extends Component {
 
   deleteAccount = e => {
     axios
-      .delete(`http://localhost:3001/api/User/${this.props.match.params.id}`)
+      .delete(`${process.env.REACT_APP_BACKEND_URL}/api/User/${this.props.match.params.id}`)
       .then(res => {
         console.log(res.data);
         this.setState({ username: res.data.username, email: res.data.email });
