@@ -83,6 +83,7 @@ export default class Board extends Component {
 
 	stopGame = () => {
 		console.log('je marrete', this.setState);
+		this.setState({ launched: false })
 		this.setState({ step: 4 }, () => {
 			this.props.socket.emit('get-result', this.state.players);
 		});
@@ -91,7 +92,7 @@ export default class Board extends Component {
 	render() {
 		return (
 			<React.Fragment>
-				{this.state.step === 3 && (
+				{this.state.step === 3 && this.state.launched === true && (
 					<div>
 						<KeyListener
 							user={this.props.user}
