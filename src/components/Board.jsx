@@ -83,7 +83,7 @@ export default class Board extends Component {
 				{this.state.step === 1 && (
 					<DinoPicker availableDinos={this.props.availableDinos} setPlayer={this.setPlayer} />
 				)}
-				{this.state.step === 2 && <Waiting ready={this.state.ready} />}
+				{this.state.step === 2 && <Waiting ready={this.state.ready} player={this.state.players} />}
 				{this.state.step === 3 && (
 					<div className="smallGameContainer">
 						<React.Fragment>
