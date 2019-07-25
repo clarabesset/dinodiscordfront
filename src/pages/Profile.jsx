@@ -101,7 +101,7 @@ export default class Profile extends Component {
                 </div>
                 <div className="buttons">
                   <div onClick={e => this.handleSubmit(e)}>
-                    <a className="buttonsProfile">Save changes</a>
+                    <p className="buttonsProfile">Save changes</p>
                   </div>
                   <div
                     className="buttonsProfile"
