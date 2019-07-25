@@ -4,7 +4,7 @@ function Footer() {
   return (
     <div>
       <footer className="footer">
-        <p className="footer-title">Made with humour & passion by</p>
+        <p className="footer-title">Made with anxiety & passion by</p>
         <a
           className="footer-title footer-name"
           href="https://www.linkedin.com/in/camille-charpentier/"

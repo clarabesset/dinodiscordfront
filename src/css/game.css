@@ -53,3 +53,10 @@
   width: 200px;
   cursor: pointer;
 }
+
+.infoBoard {
+  color: white;
+  margin: 100px 50px;
+  line-height: 40px;
+  font-size: 20px;
+}
