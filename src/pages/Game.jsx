@@ -32,7 +32,7 @@ export default class Game extends Component {
 	componentDidMount() {
 		this.setState({ socket: socketIO.connect(process.env.REACT_APP_BACKEND_URL + '/room') }, () => {
 			this.state.socket.on('confirm-player-join', (players) => {
-				// console.log('player has join the waiting room', players);
+				console.log('player has join the waiting room', players);
 				this.setState({ playersFromServer: players });
 			});
 
