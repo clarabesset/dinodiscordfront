@@ -15,7 +15,7 @@ export default class Result extends Component {
       <div className="resultContainer">
         <MusicWin />
         {this.props.result && <React.Fragment>
-        <div className="titleResult">*Winning Player {this.props.result.winner} you win!!</div>
+        <div className="titleResult">* Player {this.props.result.winner} you win!!</div>
         <div className="containerWinDino">
           <div class="box1 sb7">with {this.props.result[this.props.result.winner]} points bitch</div>
           <div className="gifWinner">
