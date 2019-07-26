@@ -5,7 +5,6 @@ import Home from "./pages/Home";
 import SignIn from "./pages/SignIn";
 import Intro from "./pages/Intro";
 import WhatsurName from "./pages/WhatsUrName";
-//import SignUp from "./pages/SignUp";
 import SignUp from "./pages/SignUp";
 import Menu from "./pages/Menu";
 import Game from "./pages/Game";
@@ -14,9 +13,6 @@ import LeaderBoard from "./pages/LeaderBoard";
 import Instructions from "./pages/Instructions";
 import Profile from "./pages/Profile";
 import ProtectedRoute from "./auth/ProtectedRoute";
-import Waiting from "./components/Waiting";
-
-// import DinoPicker from "./pages/DinoPicker";
 
 function App({ location }) {
   return (
@@ -33,13 +29,6 @@ function App({ location }) {
         <ProtectedRoute path="/leaderboard" component={LeaderBoard} />
         <ProtectedRoute path="/instructions" component={Instructions} />
         <ProtectedRoute path="/profile/:id" component={Profile} />
-        {/* <ProtectedRoute path="/wainting" component={Menu} /> */}
-        {/* <Route path="/game" component={Game} /> */}
-        {/* <Route path="/result" component={Result} /> */}
-        {/* <Route path="/leaderboard" component={LeaderBoard} /> */}
-        {/* <Route path="/instructions" component={Instructions} /> */}
-        {/* <Route path="/profile/:id" component={Profile} /> */}
-        {/* <Route path="/waiting" component={Waiting} /> */}
       </Switch>
     </div>
   );
