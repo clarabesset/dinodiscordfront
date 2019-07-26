@@ -13,11 +13,13 @@ const colors = {
 
 export default class InfoPlayer extends Component {
 	render() {
-		console.log(this.props.player);
+		console.log('props player ??????????',this.props.player);
+		console.log('this.props.player.details ??????????',this.props.player.details);
+		console.log('this.props.player.details.username ??????????',this.props.player.details.username);
 		return (
 			<div>
 				<div className="infoBoard">
-					<h2>{this.props.user.username}</h2>
+					<h2>{this.props.player.details.username}</h2>
 					<img src={colors[this.props.player.color]} alt="player dino" />
 					<br />
 				</div>
