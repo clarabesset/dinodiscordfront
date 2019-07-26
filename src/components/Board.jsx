@@ -133,7 +133,7 @@ export default class Board extends Component {
             )}
             {this.state.launched === true && (
               <Timer
-                limit={30}
+                limit={5}
                 go={Boolean(this.state.currentGrid.length)}
                 clbk={this.stopGame}
               />
@@ -159,7 +159,7 @@ export default class Board extends Component {
           </div>
         )}
         {this.state.step === 4 && (
-          <Result players={this.state.players} result={this.props.result} />
+          <Result  user={this.props.user} players={this.state.players} result={this.props.result} />
         )}
       </React.Fragment>
     );

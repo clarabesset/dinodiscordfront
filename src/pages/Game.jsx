@@ -30,22 +30,25 @@ export default class Game extends Component {
 	};
 
 	componentDidMount() {
+		console.log("--------------------------");
+		console.log("GAME DID MOUNT");
+		console.log(this.state);
+		console.log("--------------------------");
 		this.setState({ socket: socketIO.connect(process.env.REACT_APP_BACKEND_URL + '/room') }, () => {
 			this.state.socket.on('confirm-player-join', (players) => {
 				console.log('player has join the waiting room', players);
 				this.setState({ playersFromServer: players });
 			});
 
+			this.state.socket.on('error-log', (error) => {
+				console.warn(error);
+			});
 			this.state.socket.on('remove-one-dino', (color) => {
 				this.setAvailableDinos(color);
 			});
 
 			this.state.socket.on('ready-to-play', (data) => {
-				// console.log('grid has been served', data);
-				this.setState({ currentGrid: data.gridModel, playersFromServer: data.players }, () => {
-					// console.log(this.state.playersFromServer);
-					// console.log(this.state.currentGrid);
-				});
+				this.setState({ currentGrid: data.gridModel, playersFromServer: data.players })
 			});
 
 			this.state.socket.on('update-grid', (updatedGrid) => {
@@ -64,7 +67,7 @@ export default class Game extends Component {
 				<div class="boardContainer">
 					<AuthConsumer>
 						{({ user }) => {
-							return (
+							return (user &&
 								<>
 								<Board
 									result={this.state.result}

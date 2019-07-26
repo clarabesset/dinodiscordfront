@@ -28,12 +28,18 @@ function App({ location }) {
         <Route path="/whats-ur-name" component={WhatsurName} />
         <Route path="/signup" component={SignUp} />
         <ProtectedRoute path="/menu" component={Menu} />
-        <Route path="/game" component={Game} />
-        <Route path="/result" component={Result} />
-        <Route path="/leaderboard" component={LeaderBoard} />
-        <Route path="/instructions" component={Instructions} />
-        <Route path="/profile/:id" component={Profile} />
-        <Route path="/waiting" component={Waiting} />
+        <ProtectedRoute path="/game" component={Game} />
+        <ProtectedRoute path="/result" component={Result} />
+        <ProtectedRoute path="/leaderboard" component={LeaderBoard} />
+        <ProtectedRoute path="/instructions" component={Instructions} />
+        <ProtectedRoute path="/profile/:id" component={Profile} />
+        {/* <ProtectedRoute path="/wainting" component={Menu} /> */}
+        {/* <Route path="/game" component={Game} /> */}
+        {/* <Route path="/result" component={Result} /> */}
+        {/* <Route path="/leaderboard" component={LeaderBoard} /> */}
+        {/* <Route path="/instructions" component={Instructions} /> */}
+        {/* <Route path="/profile/:id" component={Profile} /> */}
+        {/* <Route path="/waiting" component={Waiting} /> */}
       </Switch>
     </div>
   );

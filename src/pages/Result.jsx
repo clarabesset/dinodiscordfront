@@ -14,23 +14,34 @@ const colors = {
 	green
 };
 
-export default class Result extends Component {
-	static getDerivedStateFromProps(newProps, state) {
-		console.log(newProps);
-		return null;
-	}
+function updatePlayerScore(id, score) {
+	axios
+	.patch(`${process.env.REACT_APP_BACKEND_URL}/api/User/winner/${id}`, {score})
+	.then((res) => {
+		console.log(res, 'update');
+	})
+	.catch((dbErr) => console.log(dbErr));
+}
 
-	componentWillUnmount() {
-		axios
-			.patch(
-				`${process.env.REACT_APP_BACKEND_URL}/api/User/winner/${this.props.players[this.props.result.winner - 1]
-					.id}`,
-				{ $inc: { score: `${this.props.result[this.props.result.winner]}` } }
-			)
-			.then((res) => {
-				console.log(res, 'update');
-			})
-			.catch((dbErr) => console.log(dbErr));
+
+export default class Result extends Component {
+
+	state = {
+		done: false
+	};
+
+	static getDerivedStateFromProps(newProps, state) {
+		console.log("new props in results", newProps);
+		if (newProps.result && newProps.user && newProps.user._id === newProps.players[newProps.result.winner - 1].id && !state.done) {
+			console.log("singleton, only one passs ???")
+			const winnerId = newProps.players[newProps.result.winner - 1].id;
+			const score = newProps.result[newProps.result.winner];
+			updatePlayerScore(winnerId, score)
+			return {
+				done: true
+			};
+		}
+		return null;
 	}
 
 	render() {
