@@ -54,6 +54,13 @@ export default class Result extends Component {
                   bitch
                 </div>
               </div>
+              <div className="metaphore">
+                {" "}
+                But little dinos, aren't there more important things than
+                competing for the most territory? Don't you think these burning
+                rocks coming from the sky are a bit worring? No?? Alright I give
+                up.
+              </div>
               <div className="gifWinner">
                 <img
                   src={colors[this.props.result.winnerColor]}
