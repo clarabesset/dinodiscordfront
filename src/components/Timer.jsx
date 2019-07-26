@@ -29,10 +29,6 @@ export default class TimerBeforeGame extends Component {
   };
 
   render() {
-    var divStyle = {
-      color: "white",
-      fontSize: 20
-    };
     return <div className="timerBoard">{this.state.remainingSeconds}</div>;
   }
 }
