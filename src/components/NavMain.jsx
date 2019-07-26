@@ -21,6 +21,7 @@ function NavMain() {
                     profile
                   </NavLink>
                   <NavLink
+                    to={`/signin`}
                     onClick={() => signout(res => console.log(res))}
                     className="nav-item"
                   >
