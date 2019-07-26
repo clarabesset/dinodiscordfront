@@ -115,7 +115,7 @@ export default class Board extends Component {
 								clbk={this.startGame}
 							/>}
 							{this.state.launched === true && <Timer
-								limit={10}
+								limit={1000}
 								go={Boolean(this.state.currentGrid.length)}
 								clbk={this.stopGame}
 							/>}
