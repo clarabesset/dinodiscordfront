@@ -128,7 +128,7 @@ export default class Profile extends Component {
             <div className="dinoCool" />
             <div className="scoreBox">
               <h2 className="editProfile">Score:</h2>
-              <p>{this.state.score} km&#178;</p>
+              <p>{this.state.score} km&#178; conqueered</p>
             </div>
           </div>
         </div>

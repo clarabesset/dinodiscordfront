@@ -62,11 +62,12 @@ body {
 }
 
 .scoreBox {
-  border: 5px dotted black;
+  background-image: url("../img/score.png");
+  background-size: cover;
   height: 200px;
   width: 200px;
   color: black;
-  padding: 50px 50px;
+  padding: 20px 20px;
   font-size: 30px;
   margin: 70px 50px 0 0;
 }
