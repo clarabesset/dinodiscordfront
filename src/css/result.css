@@ -3,7 +3,7 @@
   background-repeat: no-repeat;
   background-size: cover;
   background-position: 0 40%;
-  height: 65vh;
+  height: 55vh;
   display: flex;
   flex-direction: column;
   text-align: center;
@@ -82,7 +82,7 @@ body {
   width: 200px;
   height: 200px;
   padding-top: 20px;
-  margin: 50px -25px 0 400px;
+  margin: 50px -25px 0 420px;
 }
 
 .box1 {
@@ -99,7 +99,7 @@ body {
     0,
     0,
     0,
-    0.3
+    0.7
   ); /* un arrière plan bleu à 50% de transparence */
 }
 
