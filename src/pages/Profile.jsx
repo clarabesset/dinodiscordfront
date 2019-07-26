@@ -11,7 +11,11 @@ export default class Profile extends Component {
   };
   componentDidMount() {
     axios
-      .get(`${process.env.REACT_APP_BACKEND_URL}/api/User/${this.props.match.params.id}`)
+      .get(
+        `${process.env.REACT_APP_BACKEND_URL}/api/User/${
+          this.props.match.params.id
+        }`
+      )
       .then(res => {
         console.log(res.data);
         this.setState({
@@ -33,7 +37,9 @@ export default class Profile extends Component {
     alert("The changes to your dino profile have been saved!");
     axios
       .patch(
-        `${process.env.REACT_APP_BACKEND_URL}/api/User/${this.props.match.params.id}`,
+        `${process.env.REACT_APP_BACKEND_URL}/api/User/${
+          this.props.match.params.id
+        }`,
         this.state
       )
       .then(res => {
@@ -44,7 +50,11 @@ export default class Profile extends Component {
 
   deleteAccount = e => {
     axios
-      .delete(`${process.env.REACT_APP_BACKEND_URL}/api/User/${this.props.match.params.id}`)
+      .delete(
+        `${process.env.REACT_APP_BACKEND_URL}/api/User/${
+          this.props.match.params.id
+        }`
+      )
       .then(res => {
         console.log(res.data);
         this.setState({ username: res.data.username, email: res.data.email });
@@ -104,7 +114,7 @@ export default class Profile extends Component {
                     className="buttonsProfile"
                     onClick={e => this.handleSubmit(e)}
                   >
-                    <a>Save changes</a>
+                    <p>Save changes</p>
                   </div>
                   <div
                     className="buttonsProfile"
