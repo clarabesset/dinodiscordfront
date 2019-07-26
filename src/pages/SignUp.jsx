@@ -5,9 +5,9 @@ export default class SignUp extends Component {
   constructor() {
     super();
     this.state = {
-      username: "gggg",
-      email: "jjj@g.com",
-      password: "toto"
+      username: "",
+      email: "",
+      password: ""
       // passwordcheck: ''
     };
   }
