@@ -122,3 +122,38 @@ body {
   left: 24px;
   bottom: -13px;
 }
+
+.metaphore {
+  width: 420px;
+  background: black;
+  padding: 10px;
+  height: 150px;
+  margin: 50px 0 400px 600px;
+  position: absolute;
+  border: 3px dotted red;
+  animation-name: metaphore;
+  animation-iteration-count: 1;
+  z-index: 2;
+  color: white;
+  font-size: 24px;
+  -webkit-animation: fade-in 1.2s cubic-bezier(0.39, 0.575, 0.565, 1) 10s both;
+  animation: fade-in 1.2s cubic-bezier(0.39, 0.575, 0.565, 1) 10s both;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
