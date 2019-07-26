@@ -21,13 +21,11 @@ export default class Result extends Component {
 	}
 
 	componentDidUpdate() {
-		// console.log(this.props.result);
-		// console.log(this.props.players[this.props.result.winner - 1].id);
 		axios
 			.patch(
 				`${process.env.REACT_APP_BACKEND_URL}/api/User/winner/${this.props.players[this.props.result.winner - 1]
 					.id}`,
-				{ $inc: { score: `${this.props.result[this.props.result.winner]}` } }
+				{ $inc: { score: `${this.props.result[this.props.result.winner]/3}` } }
 			)
 			.then((res) => {
 				console.log(res, 'update');
