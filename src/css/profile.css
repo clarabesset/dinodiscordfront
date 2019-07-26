@@ -17,7 +17,9 @@ body {
   font-size: 30px;
   color: black;
   text-align: center;
-  margin-bottom: 40px;
+  line-height: 55px;
+  padding: 10px 14px 10px 10px;
+  font-weight: bold;
 }
 
 .profileContainer {
@@ -63,13 +65,14 @@ body {
 
 .scoreBox {
   background-image: url("../img/score.png");
-  background-size: cover;
-  height: 200px;
-  width: 200px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  height: 250px;
+  width: 250px;
   color: black;
   padding: 20px 20px;
   font-size: 30px;
-  margin: 70px 50px 0 0;
+  margin: 250px 50px 0 0;
 }
 
 .boxSignProfile {
