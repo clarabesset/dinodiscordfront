@@ -27,7 +27,7 @@ body {
   align-items: center;
   background-image: url(../img/dayback.png);
   background-repeat: no-repeat;
-  background-size: contain;
+  background-size: cover;
   background-position: 0 40%;
   text-align: center;
 }
