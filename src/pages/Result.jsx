@@ -20,12 +20,12 @@ export default class Result extends Component {
 		return null;
 	}
 
-	componentDidUpdate() {
+	componentWillUnmount() {
 		axios
 			.patch(
 				`${process.env.REACT_APP_BACKEND_URL}/api/User/winner/${this.props.players[this.props.result.winner - 1]
 					.id}`,
-				{ $inc: { score: `${this.props.result[this.props.result.winner]/3}` } }
+				{ $inc: { score: `${this.props.result[this.props.result.winner]}` } }
 			)
 			.then((res) => {
 				console.log(res, 'update');
