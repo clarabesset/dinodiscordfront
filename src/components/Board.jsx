@@ -133,7 +133,7 @@ export default class Board extends Component {
             )}
             {this.state.launched === true && (
               <Timer
-                limit={1000}
+                limit={10}
                 go={Boolean(this.state.currentGrid.length)}
                 clbk={this.stopGame}
               />
