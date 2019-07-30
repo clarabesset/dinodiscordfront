@@ -68,8 +68,7 @@ export default class Result extends Component {
               <div className="crowntext">
                 <div className="crown" />
                 <div class="box1 sb7">
-                  with {this.props.result[this.props.result.winner]} points
-                  bitch
+                  with {this.props.result[this.props.result.winner]} points bro
                 </div>
               </div>
               <div className="metaphore">

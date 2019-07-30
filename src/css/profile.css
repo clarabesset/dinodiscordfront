@@ -122,6 +122,10 @@ body {
   color: #80a841;
 }
 
+.buttonsProfile:hover a {
+  color: #80a841;
+}
+
 .buttons {
   display: flex;
   flex-direction: row;
