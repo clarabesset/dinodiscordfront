@@ -15,7 +15,7 @@ export default class Instructions extends Component {
           <p>
             You have to conquer more territory than your opponent. One cell of
             your color = one point for you. You can totally steal the cells of
-            the other dino! Use the arrows on your keyboard to move around.
+            the other dino!
           </p>
           <div className="explain" id="commands">
             <p>Use the arrows on your keyboard to move around.</p>
