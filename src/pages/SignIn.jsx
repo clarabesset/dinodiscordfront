@@ -9,15 +9,12 @@ export default class SignIn extends Component {
 
   handleSubmit = (evt, signin) => {
     evt.preventDefault();
-    // console.log(evt, signin)
-
     signin(() => {
       this.props.history.push("/menu");
     }, this.state);
   };
 
   handleChange = evt => {
-    console.log(evt.target);
     const { name, value } = evt.target;
     this.setState({ [name]: value });
   };
