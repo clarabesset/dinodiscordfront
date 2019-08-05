@@ -8,7 +8,6 @@ export default class SignUp extends Component {
       username: "",
       email: "",
       password: ""
-      // passwordcheck: ''
     };
   }
   handleSubmit = e => {
@@ -16,7 +15,6 @@ export default class SignUp extends Component {
     axios
       .post(`${process.env.REACT_APP_BACKEND_URL}/signup`, this.state)
       .then(dbRes => {
-        console.log();
         this.props.history.push("/menu");
         console.log(dbRes);
       })
@@ -29,16 +27,6 @@ export default class SignUp extends Component {
     });
   };
 
-  // handleFormSubmit = (e) => {
-  // 	e.preventDefault();
-  // 	this.setState({
-  // 		username: '',
-  // 		email: '',
-  // 		password: '',
-  // 		passwordcheck: ''
-  // 	});
-  // };
-
   render() {
     return (
       <div className="signContainer">
@@ -47,7 +35,6 @@ export default class SignUp extends Component {
           <div className="formContainer">
             <div className="boxSign">
               <label className="usernameLabelU">Username:</label>
-              {/* 	<input type="text" name="username" value={this.state.username} /> */}
               <input
                 placeholder="username"
                 className="usernameU"
@@ -57,7 +44,6 @@ export default class SignUp extends Component {
             </div>
             <div className="boxSign">
               <label className="emailLabelU">Email:</label>
-              {/* <input type="text" name="email" value={this.state.email} /> */}
               <input
                 placeholder="email@email.com"
                 className="emailU"
@@ -67,7 +53,6 @@ export default class SignUp extends Component {
             </div>
             <div className="boxSign">
               <label className="passwordLabelU">Password:</label>
-              {/* 					<input type="password" name="password" value={this.state.password} /> */}
               <input
                 placeholder="password"
                 className="passwordU"
@@ -77,7 +62,6 @@ export default class SignUp extends Component {
             </div>
             <div className="boxSign">
               <label className="passwordLabelCU">Confirm your password:</label>
-              {/* 		<input type="password" name="passwordcheck" value={this.state.passwordcheck} /> */}
               <input
                 className="passwordCU"
                 type="password"
