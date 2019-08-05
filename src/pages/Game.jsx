@@ -24,16 +24,11 @@ export default class Game extends Component {
 	};
 
 	setAvailableDinos = (pickedColor) => {
-		// console.log(pickedColor);
 		const remainingDinos = this.state.dinos.filter((d) => d.color !== pickedColor);
 		this.setState({ dinos: remainingDinos });
-	};
+	}; // fait disparaître le dino choisi par le joueur 1
 
 	componentDidMount() {
-		console.log("--------------------------");
-		console.log("GAME DID MOUNT");
-		console.log(this.state);
-		console.log("--------------------------");
 		this.setState({ socket: socketIO.connect(process.env.REACT_APP_BACKEND_URL + '/room') }, () => {
 			this.state.socket.on('confirm-player-join', (players) => {
 				console.log('player has join the waiting room', players);
@@ -68,7 +63,6 @@ export default class Game extends Component {
 					<AuthConsumer>
 						{({ user }) => {
 							return (user &&
-								<>
 								<Board
 									result={this.state.result}
 									user={user}
@@ -78,7 +72,6 @@ export default class Game extends Component {
 									playersFromServer={this.state.playersFromServer}
 									socket={this.state.socket}
 								/>
-								</>
 							);
 						}}
 					</AuthConsumer>
