@@ -18,7 +18,7 @@ export default class Intro extends Component {
         text: "ignoring the meteorites crashing all around..."
       },
       {
-        text: "some dumb dinosaurs are fighting over their territories"
+        text: "some dumb dinosaurs are fighting over their territories..."
       },
       { text: "and unfortunately, you are one of them." }
     ]
@@ -39,7 +39,7 @@ export default class Intro extends Component {
         if (x <= 3) this.setState({ currentIndex: x });
         else {
           clearInterval(intervarlId);
-          this.props.history.push("/menu");
+          this.props.history.push("/menu"); // aller à menu une fois que l'intro est terminée
         }
       }, 10300);
     }, 0);
