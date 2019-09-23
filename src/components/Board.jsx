@@ -12,16 +12,16 @@ export default class Board extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentGrid: [],
-      players: [],
-      ready: false,
-      launched: false,
+      currentGrid: [], // la grille de jeu
+      players: [], // les joueurs de la partie
+      ready: false, // true quand les deux joueurs sont arrivés
+      launched: false, // true quand on est dans les 30 secondes du  jeu
       step: 1 // changer la vue pour les différentes étapes du jeu
     };
   }
   componentDidUpdate() {
     if (this.state.players.length === 1 && this.state.step !== 2) {
-      this.setState({ ready: true, step: 2 });
+      this.setState({ ready: true, step: 2 }); // passe à l'écran d'attente quand le 1er joueur est arrivé
     }
     if (
       this.state.players.length === 2 &&
@@ -29,16 +29,15 @@ export default class Board extends Component {
       !this.state.ready
     ) {
       this.setState({ ready: true, step: 2 }, () => {
-        this.props.socket.emit("generate-grid");
+        this.props.socket.emit("generate-grid"); 
       });
     }
     if (this.state.currentGrid.length && this.state.step === 2) {
-      this.setState({ step: 3 });
+      this.setState({ step: 3 }); // passe à l'écran de jeu quand les deux joueurs sont arrivés
     }
   }
 
   static getDerivedStateFromProps(newProps, state) {
-    // console.log('@getdirevedstatefrompropsnewProps => ', newProps, state);
     return {
       currentGrid: newProps.currentGrid.length
         ? newProps.currentGrid
@@ -62,7 +61,6 @@ export default class Board extends Component {
   }
 
   launchGame() {
-    // console.log('to the next step', this.state.players);
     this.setState({ step: 3 });
   }
 
@@ -74,26 +72,15 @@ export default class Board extends Component {
   };
 
   movePlayer = (direction, playerId) => {
-    // console.log(direction, playerId);
     this.props.socket.emit("player-move", { direction, playerId });
     //this.props.socket.broadcast.emit('player-move', {direction, playerId});
   };
 
-  // setGameCountDown = () => {
-  // 	console.log("@setgamecountDown")
-  // 	// this.setState = { go: true };
-  // 	setInterval(() => {
-  // 		console.log('this is being called from the board');
-  // 	}, 1000);
-  // };
-
   startGame = () => {
-    console.log("je start game", this.setState);
     this.setState({ launched: true });
   };
 
   stopGame = () => {
-    console.log("je marrete", this.setState);
     this.setState({ launched: false });
     this.setState({ step: 4 }, () => {
       this.props.socket.emit("get-result", this.state.players);
